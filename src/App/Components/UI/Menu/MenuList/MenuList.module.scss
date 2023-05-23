@@ -1,0 +1,31 @@
+@import "../../../../assets/const.module.scss";
+
+.list {
+  position: absolute;
+  left: 0;
+  top: 55px;
+  border-radius: 12px;
+  width: 230px;
+  padding: 12px;
+  background-color: $color_navy_blue;
+  box-shadow: 0px 4px 4px 3px rgba(0, 0, 0, 0.25);
+  animation: ani 0.4s forwards;
+  border: 1px solid black;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+@keyframes ani {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

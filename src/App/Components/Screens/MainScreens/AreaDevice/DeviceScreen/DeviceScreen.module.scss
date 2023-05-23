@@ -1,0 +1,10 @@
+@import "../../../../../assets/const.module.scss";
+
+.device {
+  border: 1px solid black;
+  width: 800px;
+  height: 500px;
+  background-color: $color_navy_blue;
+  border-radius: 10px 10px 0px 0px;
+  overflow: hidden;
+}

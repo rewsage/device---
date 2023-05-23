@@ -1,0 +1,10 @@
+@import "../../../../assets/mixins.module.scss";
+.link {
+  display: flex;
+  align-items: center;
+  > span {
+    margin-left: 10px;
+    text-decoration: none;
+    @include get-text(16px, 500);
+  }
+}

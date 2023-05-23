@@ -1,0 +1,7 @@
+.active_device {
+  transition: all 0.3s linear;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.2);
+  }
+}

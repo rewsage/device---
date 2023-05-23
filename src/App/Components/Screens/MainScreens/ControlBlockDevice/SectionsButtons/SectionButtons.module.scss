@@ -1,0 +1,10 @@
+.section {
+  display: block;
+  margin-bottom: 15px;
+  &:last-child {
+    margin: 0px;
+  }
+  > div:last-child {
+    margin: 0px;
+  }
+}

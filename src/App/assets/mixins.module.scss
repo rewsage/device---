@@ -1,0 +1,8 @@
+@import "const.module.scss";
+
+@mixin get-text($size, $weight: 400, $font: $font_roboto, $color: #ffffff) {
+  font-family: $font;
+  font-size: $size;
+  font-weight: $weight;
+  color: $color;
+}

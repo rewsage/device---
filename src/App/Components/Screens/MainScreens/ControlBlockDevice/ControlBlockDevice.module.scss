@@ -1,0 +1,11 @@
+@import "../../../../assets/const.module.scss";
+
+.container {
+  max-height: 800px;
+  width: 280px;
+  padding: 8px;
+  display: block;
+  background-color: $color_navy_blue;
+  border-radius: 8px;
+  overflow-y: auto;
+}

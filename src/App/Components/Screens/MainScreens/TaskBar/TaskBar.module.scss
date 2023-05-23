@@ -1,0 +1,25 @@
+@import "../../../../assets/const.module.scss";
+
+.bar {
+  width: 550px;
+  height: 55px;
+  border-radius: 33px;
+  background-color: $color_navy_blue;
+  box-sizing: border-box;
+  padding-right: 25px;
+  padding-left: 30px;
+  border: 1px solid black;
+
+  .container_device {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .container_active_device {
+    padding-top: 10px;
+    display: flex;
+    grid-gap: 20px;
+  }
+}
