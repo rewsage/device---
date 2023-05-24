@@ -8,7 +8,7 @@ export const deviceApi = createApi({
   endpoints: (build) => ({
     getAllDevices: build.query<IInstrumentsButtons[], void>({
       query: () => ({
-        url: "/devices",
+        url: "devices",
       }),
     }),
   }),

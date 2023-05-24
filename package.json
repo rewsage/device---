@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "-": "^0.0.1",
+    "@novnc/novnc": "^1.4.0",
     "@reduxjs/toolkit": "^1.9.3",
     "@types/node": "^18.15.11",
     "axios": "^1.3.5",
