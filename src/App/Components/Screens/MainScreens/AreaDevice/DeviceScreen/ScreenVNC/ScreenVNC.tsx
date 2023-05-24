@@ -14,9 +14,7 @@ interface IScreenVNC {
 export const ScreenVNC: FC<IScreenVNC> = ({ device, screen, loading }) => {
   return (
     <>
-      <div ref={screen} className="novnc_canvas">
-        {loading && <Loading />}
-      </div>
+      <div ref={screen} className="novnc_canvas"></div>
     </>
   );
 };
