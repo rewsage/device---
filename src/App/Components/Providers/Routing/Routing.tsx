@@ -8,7 +8,7 @@ export const Routing: FC = () => {
     <>
       <Routes>
         <Route path="/" element={<MainScreens />} />
-        <Route path="/setting" element={<SettingScreen />} />
+        <Route path="/setting/*" element={<SettingScreen />} />
       </Routes>
     </>
   );

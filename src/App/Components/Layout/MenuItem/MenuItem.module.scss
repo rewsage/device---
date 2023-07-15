@@ -2,9 +2,9 @@
 .link {
   display: flex;
   align-items: center;
+  text-decoration: none;
   > span {
     margin-left: 10px;
-    text-decoration: none;
     @include get-text(16px, 500);
   }
 }

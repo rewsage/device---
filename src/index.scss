@@ -4,6 +4,12 @@ body {
   box-sizing: border-box;
 }
 
+a.text:active, /* активная/посещенная ссылка */
+a.text:hover,  /* при наведении */
+a.text {
+  text-decoration: none;
+}
+
 button {
   padding: 0;
   border: none;

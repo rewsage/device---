@@ -1,0 +1,14 @@
+@import "../../../../assets/const.module.scss";
+
+.navbar {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  top: 15px;
+  height: 55px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $color_navy_blue;
+  border-radius: 40px;
+}

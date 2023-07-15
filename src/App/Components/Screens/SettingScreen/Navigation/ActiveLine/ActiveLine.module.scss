@@ -1,0 +1,12 @@
+@import "../../../../../assets/const.module.scss";
+
+.line {
+  background-color: $color_lime;
+  border-radius: 40px;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+}
