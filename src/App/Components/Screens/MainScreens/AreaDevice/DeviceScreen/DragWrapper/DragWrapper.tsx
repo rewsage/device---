@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren } from "react";
+import { FC, PropsWithChildren, RefObject } from "react";
 import { DragControls, motion, useDragControls } from "framer-motion";
 import { useResize } from "../../../../../../hooks/useResize";
 import style from "./DragWrapper.module.scss";

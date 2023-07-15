@@ -99,5 +99,5 @@ export const useNoVns = (device: IInstrumentsButtons) => {
     setConnected(false);
   };
 
-  return { loading, screen, disconnect };
+  return { loading, screen, disconnect , connected, connect};
 };

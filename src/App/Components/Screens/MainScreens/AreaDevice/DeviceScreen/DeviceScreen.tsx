@@ -7,15 +7,19 @@ import { HeadingDevice } from "./HeadingDevice/HeadingDevice";
 import { ScreenVNC } from "./ScreenVNC/ScreenVNC";
 import { Loading } from "../../../../UI/Loading/Loading";
 import { useNoVns } from "./useNoVns";
+import { WinResize } from "./WinResize/WinResize";
+import { useResizeElement } from "./WinResize/useResizeElement";
 
 export const DeviceScreen: FC<{ device: IInstrumentsButtons }> = ({
   device,
 }) => {
   const dragControls = useDragControls();
-  const { disconnect, loading, screen } = useNoVns(device);
+  const { win, ...onMouseEvent } = useResizeElement(600, 400);
+  const noVNC = useNoVns(device);
   return (
     <DregWrapper device={device} dragControls={dragControls}>
       <motion.div
+        ref={win}
         className={style.device}
         tabIndex={0}
         transition={{
@@ -27,9 +31,10 @@ export const DeviceScreen: FC<{ device: IInstrumentsButtons }> = ({
         <HeadingDevice
           device={device}
           dragControls={dragControls}
-          disconnect={disconnect}
+          disconnect={noVNC.disconnect}
         />
-        <ScreenVNC device={device} loading={loading} screen={screen} />
+        <ScreenVNC device={device} {...noVNC} />
+        <WinResize {...onMouseEvent} />
       </motion.div>
     </DregWrapper>
   );

@@ -1,0 +1,64 @@
+.nw_resizer {
+  position: absolute;
+  left: -1px;
+  top: -1px;
+  width: 6px;
+  height: 6px;
+  cursor: nw-resize;
+}
+.n_resizer {
+  position: absolute;
+  left: 5px;
+  right: 5px;
+  top: -1px;
+  height: 6px;
+  cursor: n-resize;
+}
+.ne_resizer {
+  position: absolute;
+  right: -1px;
+  top: -1px;
+  width: 6px;
+  height: 6px;
+  cursor: ne-resize;
+}
+.e_resizer {
+  position: absolute;
+  top: 5px;
+  bottom: 5px;
+  right: -1px;
+  width: 6px;
+  cursor: e-resize;
+}
+.se_resizer {
+  position: absolute;
+  right: -1px;
+  bottom: -1px;
+  width: 6px;
+  height: 6px;
+  cursor: se-resize;
+}
+.s_resizer {
+  position: absolute;
+  left: 5px;
+  right: 5px;
+  bottom: -1px;
+  height: 6px;
+  cursor: s-resize;
+}
+.sw_resizer {
+  position: absolute;
+  left: -1px;
+  bottom: -1px;
+  width: 6px;
+  height: 6px;
+  cursor: sw-resize;
+}
+.w_resizer {
+  position: absolute;
+  top: 5px;
+  bottom: 5px;
+  left: -1px;
+  width: 6px;
+  cursor: w-resize;
+}
