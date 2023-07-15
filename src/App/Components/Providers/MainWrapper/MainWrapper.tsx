@@ -1,15 +1,17 @@
-import { FC, PropsWithChildren } from "react";
-import style from "./MainWrapper.module.scss";
+import { FC } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Routing } from "../Routing/Routing";
 import { Provider } from "react-redux";
 import { store } from "../../../store/store";
+import { Layout } from "../../Layout/Layout";
 
-export const MainWrapper: FC<PropsWithChildren> = ({ children }) => {
+export const MainWrapper: FC = () => {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <div className={style.wrapper}>{children}</div>
+        <Layout>
+          <Routing />
+        </Layout>
       </BrowserRouter>
     </Provider>
   );
