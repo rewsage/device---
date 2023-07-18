@@ -7,6 +7,7 @@ import { ReactComponent as UsersIcon } from "../../../assets/Icons/users.svg";
 import { ReactComponent as ButtonsIcon } from "../../../assets/Icons/buttons.svg";
 import { ReactComponent as EditIcon } from "../../../assets/Icons/edit.svg";
 import { ReactComponent as DeleteIcon } from "../../../assets/Icons/delete.svg";
+import { ReactComponent as AddIcon } from "../../../assets/Icons/add.svg";
 import * as MaterialIcons from "react-icons/fa6";
 import { IconName, TypeMaterialIcons } from "../../../shared/Types/icon.type";
 import { SVGProps } from "react";
@@ -21,6 +22,7 @@ export const icons = {
   buttons: ButtonsIcon,
   edit: EditIcon,
   delete: DeleteIcon,
+  add: AddIcon,
 };
 
 export const Icon = ({

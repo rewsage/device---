@@ -1,0 +1,12 @@
+@import "../../../assets/const.module.scss";
+
+.table {
+  width: 100%;
+  font-family: $font_firaCode;
+  font-weight: 400;
+  border-collapse: separate;
+  border-spacing: 0px 10px;
+  table-layout: auto;
+  display: flex;
+  flex-direction: column;
+}

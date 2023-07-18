@@ -1,0 +1,26 @@
+@import "../../../../assets/const.module.scss";
+
+.thead {
+  color: white;
+  background-color: transparent;
+  //   width: 100%;
+  font-size: 24px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 0 20px;
+  .row {
+    width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: space-between;
+  }
+  .column_header {
+    text-align: center;
+    font-family: $font_firaCode;
+    font-weight: 300;
+  }
+}

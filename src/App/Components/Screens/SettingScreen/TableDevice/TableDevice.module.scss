@@ -1,0 +1,41 @@
+@import "../../../../assets/const.module.scss";
+.content {
+  width: 70%;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  display: block;
+  top: 20%;
+  .bbar {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    width: 100%;
+    .icon {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      fill: $color_lime;
+      transition: all 0.3s linear;
+      &:hover{
+        opacity: 0.8;
+      }
+    }
+  }
+}
+.actions {
+  .button_edit {
+    fill: white;
+    transition: all 0.3s linear;
+    &:hover {
+      fill: $color_lime;
+    }
+  }
+  .button_delete {
+    fill: white;
+    transition: all 0.3s linear;
+    &:hover {
+      fill: #b00000;
+    }
+  }
+}

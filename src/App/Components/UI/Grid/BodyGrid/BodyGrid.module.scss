@@ -1,0 +1,41 @@
+@import "../../../../assets/const.module.scss";
+
+.body {
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    color: white;
+    height: 60px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: rgba(48, 58, 84, 0.74);
+    .value {
+      font-family: $font_firaCode;
+      font-size: 18px;
+      font-weight: 400;
+      text-align: center;
+      position: relative;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      > input {
+        width: 100%;
+        height: 60px;
+        box-sizing: border-box;
+        background-color: $color_navy_blue;
+        color: white;
+        font-size: 18px;
+        outline: none;
+        border: none;
+        &:active,
+        &:hover,
+        &:focus {
+          outline: 0;
+          outline-offset: 0;
+        }
+      }
+    }
+  }
+}
