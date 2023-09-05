@@ -1,0 +1,72 @@
+@import "../../../assets/mixins.module.scss";
+@import "../../../assets/const.module.scss";
+
+.field {
+  display: block;
+  position: relative;
+  margin-top: 15px;
+  > span {
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+    transition: all 0.2s linear;
+    z-index: 1;
+    @include get-text(20px, 400, $font_firaCode);
+  }
+
+  .line {
+    position: absolute;
+    bottom: -1px;
+    left: 49%;
+    z-index: 1;
+    width: 2%;
+    height: 2px;
+    visibility: hidden;
+    background-color: $color_lime;
+    transition-duration: 0.4s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .isFocus {
+    left: 0;
+    width: 100%;
+    visibility: visible;
+  }
+  .line_error {
+    background-color: $color_red;
+  }
+  > input {
+    width: 100%;
+    display: block;
+    height: 40px;
+    background-color: transparent;
+    padding: 5px 10px 5px 10px;
+    @include get-text(14px, 300, $font_firaCode);
+    border: none;
+    border-bottom: 1px $color_navy_blue solid;
+    outline: none;
+    margin-bottom: 30px;
+    box-sizing: border-box;
+    transition: all 0.2s linear;
+    &:focus + span,
+    &:valid + span {
+      transform: translate(-20px, -25px);
+    }
+  }
+  .error {
+    opacity: 0;
+    position: absolute;
+    @include get-text(16px, 400, $font_JetBrains, $color_red);
+    bottom: -24px;
+    left: 10px;
+    animation: ani_error 0.4s forwards;
+  }
+}
+
+@keyframes ani_error {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

@@ -4,7 +4,7 @@ import { useGetAllDevicesQuery } from "../../../../services/deviceApi/device.api
 import { Grid } from "../../../UI/Grid/Grid";
 import { columnsDevice } from "./TableDevice.columns";
 import { Icon } from "../../../UI/Icon/Icon";
-import { Button } from "../../../UI/Button/Button";
+import { Link } from "react-router-dom";
 
 export const TableDevice: FC = () => {
   const { data, isLoading } = useGetAllDevicesQuery();
@@ -18,9 +18,9 @@ export const TableDevice: FC = () => {
         numberingRecord
       />
       <div className={style.bbar}>
-        <Button >
+        <Link to={"/constructor/new"}>
           <Icon name="add" className={style.icon} />
-        </Button>
+        </Link>
       </div>
     </div>
   );

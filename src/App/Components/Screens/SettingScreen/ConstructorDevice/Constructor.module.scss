@@ -1,0 +1,13 @@
+.screen {
+  display: block;
+  padding: 20px 20px 0px 20px;
+  .form {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    .left {
+      margin-top: 50px;
+      width: 500px;
+    }
+  }
+}
