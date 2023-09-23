@@ -7,6 +7,7 @@ import { sessionStorageWrapper } from "../../../../utils/storage-wrapper.utils";
 import style from "./Constructor.module.scss";
 import TextField from "../../../UI/TextField/TextField";
 import { Button } from "../../../UI/Button/Button";
+import Select from "../../../UI/Combobox/Combobox";
 
 const ConstructorDevice: FC = () => {
   const {
@@ -27,6 +28,10 @@ const ConstructorDevice: FC = () => {
   const onSubmit: SubmitHandler<IConstructor> = (data) => {
     console.log(data);
   };
+  const dataOptions: IOption[] = [
+    { label: "Новый", value: "new" },
+    { label: "какой-то прибор", value: "1" },
+  ];
 
   return (
     <div className={style.screen}>
@@ -37,11 +42,11 @@ const ConstructorDevice: FC = () => {
             error={errors.name}
             {...register("name", { required: "Введите название прибора!" })}
           />
-          {/* <Controller
+          <Controller
             control={control}
             name="type"
             render={({ field, fieldState: { error } }) => (
-              <DynamicSelector
+              <Select
                 field={field}
                 isLoading={false}
                 isMulti={false}
@@ -50,7 +55,7 @@ const ConstructorDevice: FC = () => {
                 error={error}
               />
             )}
-          /> */}
+          />
           {/* <div className={style.right}>
             <ButtonsConstructor />
           </div> */}

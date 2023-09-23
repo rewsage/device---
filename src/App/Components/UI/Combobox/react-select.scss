@@ -1,0 +1,99 @@
+@import "../../../assets/mixins.module.scss";
+@import "../../../assets/const.module.scss";
+
+.custom-select {
+  &__control {
+    background-color: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    border-bottom: 1px solid $color_navy_blue !important;
+    box-shadow: none !important;
+  }
+
+  &__value-container {
+    padding: 0 !important;
+    cursor: text !important;
+  }
+
+  &__single-value {
+    padding-left: 15px !important;
+    @include get-text(16px, 400, $font_JetBrains);
+  }
+
+  &__input-container {
+    padding-left: 15px !important;
+    @include get-text(16px, 400, $font_JetBrains);
+  }
+
+  &__indicator-separator {
+    display: none !important;
+  }
+
+  &__indicators {
+    cursor: pointer !important;
+  }
+
+  &__indicator {
+    color: $color_navy_blue !important;
+    transition: all 0.3s linear !important;
+    &:hover {
+      color: $color_asphalt_gray !important;
+    }
+  }
+
+  &__multi-value__label {
+    @include get-text(16px, 400, $font_JetBrains);
+  }
+
+  &__multi-value__remove {
+    color: rgba($color_red, 0.8) !important;
+    cursor: pointer;
+
+    &:hover {
+      background-color: transparent !important;
+      color: rgba($color_green, 1) !important;
+    }
+  }
+
+  &__menu {
+    padding-bottom: 0px !important;
+    margin-top: 0px !important;
+    background-color: white !important;
+    @include get-text(16px, 400, $font_JetBrains);
+    animation: show 0.25s ease-in-out;
+  }
+
+  &__option {
+    cursor: pointer !important;
+    &--is-focused {
+      background-color: lighten(white, 70%) !important;
+    }
+  }
+
+  &-container {
+    > div {
+      outline: none !important;
+      box-shadow: none !important;
+    }
+
+    .form-control__indicators {
+      @apply cursor-pointer;
+    }
+  }
+
+  &__menu {
+    @apply animate-scaleIn;
+  }
+}
+
+@keyframes show {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}

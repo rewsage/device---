@@ -8,10 +8,19 @@ export const Button: FC<IButton> = ({
   flat,
   disabled,
   loading,
+  width = 100,
+  height = 20,
   ...props
 }) => {
+  if (typeof width === "number") {
+    width = width + "px";
+  }
+  if (typeof height === "number") {
+    height = height + "px";
+  }
   return (
     <button
+      style={{ width, height }}
       {...props}
       className={cn(style.default, {
         [style.flat]: flat,

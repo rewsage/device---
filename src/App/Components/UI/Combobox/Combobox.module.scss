@@ -1,0 +1,29 @@
+@import "../../../assets/mixins.module.scss";
+@import "../../../assets/const.module.scss";
+
+.select {
+  position: relative;
+  > span {
+    @include get-text(20px, 400, $color_navy_blue);
+  }
+  .line {
+    position: absolute;
+    bottom: -1px;
+    left: 49%;
+    z-index: 1;
+    width: 2%;
+    height: 2px;
+    visibility: hidden;
+    background-color: $color_green;
+    transition-duration: 0.4s;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .isFocus {
+    left: 0;
+    width: 100%;
+    visibility: visible;
+  }
+  .line_error {
+    background-color: $color_red;
+  }
+}
