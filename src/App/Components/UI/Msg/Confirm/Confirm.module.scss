@@ -1,0 +1,66 @@
+@import "../../../../assets/const.module.scss";
+@import "../../../../assets/mixins.module.scss";
+
+.alert {
+  display: block;
+  width: 500px;
+  background-color: $color_navy_blue;
+  box-sizing: border-box;
+  border-radius: 10px;
+  .header {
+    width: 100%;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-sizing: border-box;
+    @include get-text(18px, 300, $font_firaCode);
+  }
+  .body {
+    display: flex;
+    width: 100%;
+    .icon {
+      margin: 0 0 0 0;
+      > svg {
+        width: 150px;
+        height: 150px;
+        fill: white;
+      }
+      .delete_icon {
+        fill: #7b001c;
+      }
+    }
+
+    .right {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding-right: 10px;
+      .text {
+        margin-top: 20px;
+        @include get-text(20px, 400, $font_roboto);
+        text-align: center;
+        width: 100%;
+        margin-bottom: 20px;
+      }
+
+      .container_button {
+        display: flex;
+        align-items: center;
+        margin-bottom: 40px;
+        width: 200px;
+        justify-content: space-between;
+
+        .delete_btn {
+          transition: all 0.2s linear;
+          &:hover {
+            color: #7b001c;
+          }
+        }
+      }
+    }
+  }
+}

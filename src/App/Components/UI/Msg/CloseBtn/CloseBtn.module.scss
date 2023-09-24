@@ -1,0 +1,20 @@
+@import "../../../../assets/const.module.scss";
+
+.btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  color: white;
+  font-size: 20px;
+  transition: all 0.2s linear;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  &:hover {
+    background-color: rgba(235, 235, 235, 0.2);
+  }
+}
