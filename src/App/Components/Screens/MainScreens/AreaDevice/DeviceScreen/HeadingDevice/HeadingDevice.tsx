@@ -4,7 +4,8 @@ import style from "./HeadingDevice.module.scss";
 import { useAppDispatch } from "../../../../../../hooks/useAppDispatch";
 import { deviceActions } from "../../../../../../store/device/device.slice";
 import { DragControls } from "framer-motion";
-import { IconIO } from "../../../../../UI/Icon/Icon";
+import { IconLucide } from "../../../../../UI/Icon/Icon";
+
 
 interface IHeadingDeviceProps {
   device: IInstrumentsButtons;
@@ -32,13 +33,13 @@ export const HeadingDevice: FC<IHeadingDeviceProps> = ({
       <div className={style.buttons}>
         {/* <button className={style.turn}>-</button> */}
         <button className={style.increase}>
-          <IconIO name="FaUpDownLeftRight" />
+          <IconLucide name="maximize-2" />
         </button>
         <button
           className={style.closed}
           onClick={() => handlerClick(device.id)}
         >
-          <IconIO name="FaXmark" />
+          <IconLucide name="x" />
         </button>
       </div>
     </div>

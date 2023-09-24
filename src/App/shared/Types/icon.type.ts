@@ -1,7 +1,5 @@
 import { icons } from "../../Components/UI/Icon/Icon";
-import * as MaterialIcons from "react-icons/fa6";
+import dynamicIconImports from "lucide-react/dynamicIconImports";
 
-export type TypeMaterialIcons = keyof typeof MaterialIcons;
+export type TypeIconsName = keyof typeof dynamicIconImports;
 export type IconName = keyof typeof icons;
-
-

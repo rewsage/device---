@@ -8,9 +8,10 @@ import { ReactComponent as ButtonsIcon } from "../../../assets/Icons/buttons.svg
 import { ReactComponent as EditIcon } from "../../../assets/Icons/edit.svg";
 import { ReactComponent as DeleteIcon } from "../../../assets/Icons/delete.svg";
 import { ReactComponent as AddIcon } from "../../../assets/Icons/add.svg";
-import * as MaterialIcons from "react-icons/fa6";
-import { IconName, TypeMaterialIcons } from "../../../shared/Types/icon.type";
-import { SVGProps } from "react";
+import { LucideProps } from "lucide-react";
+import dynamicIconImports from "lucide-react/dynamicIconImports";
+import { IconName, TypeIconsName } from "../../../shared/Types/icon.type";
+import { SVGProps, Suspense, lazy } from "react";
 
 export const icons = {
   setting: SettingIcon,
@@ -33,10 +34,18 @@ export const Icon = ({
   return <Icon {...restProps} />;
 };
 
-export const IconIO = ({
-  name,
-  ...props
-}: { name: TypeMaterialIcons } & SVGProps<SVGAElement>) => {
-  const Icon = MaterialIcons[name];
-  return <Icon {...props} />;
+interface IconProps extends Omit<LucideProps, "ref"> {
+  name: TypeIconsName;
+}
+
+const fallback = <div style={{ background: "#ddd", width: 24, height: 24 }} />;
+
+export const IconLucide = ({ name, ...props }: IconProps) => {
+  const LucideIcon = lazy(dynamicIconImports[name]);
+
+  return (
+    <Suspense fallback={fallback}>
+      <LucideIcon {...props} />
+    </Suspense>
+  );
 };
