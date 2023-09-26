@@ -5,14 +5,13 @@ import { Grid } from "../../../UI/Grid/Grid";
 import { columnsDevice } from "./TableDevice.columns";
 import { Icon } from "../../../UI/Icon/Icon";
 import { Link } from "react-router-dom";
-import { useNotify } from "../../../UI/Notify/useNotify";
+import { NotifyWrapper } from "../../../UI/Notify/NotifyWrapper";
 
 export const TableDevice: FC = () => {
   const { data, isLoading, isError } = useGetAllDevicesQuery();
-  const { show } = useNotify();
   useEffect(() => {
     if (isError) {
-      show({ title: "Ошибка", text: "Возникла ошибка при загрузке данных" });
+
     }
   }, [isError]);
 

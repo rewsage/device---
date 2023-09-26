@@ -1,0 +1,18 @@
+@import "../../../../../../assets/const.module.scss";
+
+.default {
+  border: $color_navy_blue 2px solid;
+  width: 100px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.green {
+  background-color: $color_green;
+}
+
+.grey {
+  background-color: $color_asphalt_gray;
+}

@@ -1,9 +1,8 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect } from "react";
 import style from "./Notify.module.scss";
 import { INotify } from "./Notify.interface";
 import cn from "classnames";
-import { IconLucide } from "../Icon/Icon";
-
+import { CloseBtn } from "../Msg/CloseBtn/CloseBtn";
 
 type propsNotify = INotify & { close: (id: number) => void };
 
@@ -17,7 +16,6 @@ export const Notify: FC<propsNotify> = ({
   defaultHideTimeout = 10,
   ...props
 }) => {
-
   const closeTime = Date.now() + defaultHideTimeout * 1000;
   let closeTimeout: ReturnType<typeof setTimeout> | null = null;
   useEffect(() => {
@@ -53,9 +51,7 @@ export const Notify: FC<propsNotify> = ({
     >
       <div className={style.title}>
         <div className={style.titleText}>{title}</div>
-        <div className={style.closeBtn} onClick={() => close(idNotify)}>
-          <IconLucide name="x" />
-        </div>
+        <CloseBtn close={() => close(idNotify)} />
       </div>
       <div className={style.text}>{text}</div>
     </div>

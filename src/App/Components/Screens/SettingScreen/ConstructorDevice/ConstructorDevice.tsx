@@ -8,6 +8,8 @@ import style from "./Constructor.module.scss";
 import TextField from "../../../UI/TextField/TextField";
 import { Button } from "../../../UI/Button/Button";
 import Select from "../../../UI/Combobox/Combobox";
+import { IOption } from "../../../UI/Combobox/combobox.interface";
+import ButtonsConstructor from "./ButtonsConstructor/ButtonsConstructor";
 
 const ConstructorDevice: FC = () => {
   const {
@@ -56,9 +58,9 @@ const ConstructorDevice: FC = () => {
               />
             )}
           />
-          {/* <div className={style.right}>
+          <div className={style.right}>
             <ButtonsConstructor />
-          </div> */}
+          </div>
           <Button type="submit">Создать</Button>
         </div>
 

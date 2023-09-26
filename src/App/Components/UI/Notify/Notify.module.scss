@@ -1,40 +1,30 @@
 @import "../../../assets/const.module.scss";
+@import "../../../assets/mixins.module.scss";
 
 .wrapper {
   position: absolute;
   right: 5px;
   bottom: 5px;
   z-index: 1000;
-  max-width: 450px;
+  width: 400px;
   box-sizing: border-box;
-  font-family: $font_roboto;
   .notify {
-    width: 100%;
     border-radius: 5px;
+    display: block;
+    background-color: $color_navy_blue;
+    box-sizing: border-box;
     .title {
       display: flex;
       align-items: center;
-      background-color: $color_navy_blue;
+      padding: 5px 15px;
       .titleText {
-        width: 100%;
-        color: white;
-        font-size: 18px;
-      }
-      .closeBtn {
-        font-size: 10px;
-        border-radius: 50%;
-        transition: all 0.3s linear;
-        &:hover {
-          background-color: $color_light_grey;
-        }
+        @include get-text(18px, 300, $font_firaCode);
       }
     }
     .text {
-      padding: 5px;
+      padding: 10px 15px;
       white-space: pre-wrap;
-      background-color: $color_asphalt_gray;
-      color: white;
-      font-size: 14px;
+      @include get-text(16px, 400, $font_roboto);
     }
   }
 }
