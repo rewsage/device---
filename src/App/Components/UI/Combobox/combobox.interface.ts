@@ -9,6 +9,7 @@ export interface IOption {
 interface IFieldProps {
   placeholder: string;
   error?: FieldError;
+  margin?: string | number;
 }
 
 export interface ISelect extends IFieldProps {

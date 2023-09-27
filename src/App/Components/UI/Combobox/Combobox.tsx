@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useRef, useState } from "react";
 import { OnChangeValue } from "react-select/dist/declarations/src";
 import { IOption, ISelect } from "./combobox.interface";
 import style from "./Combobox.module.scss";
@@ -14,14 +14,23 @@ const Select: FC<ISelect> = ({
   isMulti,
   options,
   placeholder,
+  margin,
   error,
 }) => {
   let defaultActive: boolean = !!field.value;
   if (Array.isArray(field.value) && field.value.length === 0) {
     defaultActive = false;
   }
-  
+
   const [isFocused, setIsFocused] = useState(false);
+  const refField = useRef<HTMLDivElement>(null);
+
+  if (margin) {
+    if (refField.current) {
+      refField.current.style.margin =
+        typeof margin === "string" ? margin : margin + "px";
+    }
+  }
 
   const onChange = (newValue: unknown | OnChangeValue<IOption, boolean>) => {
     field.onChange(

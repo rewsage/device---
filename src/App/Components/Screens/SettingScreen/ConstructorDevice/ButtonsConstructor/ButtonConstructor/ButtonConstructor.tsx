@@ -11,12 +11,13 @@ const ButtonConstructor: FC<{ button: IButtonDevices }> = ({ button }) => {
     item: { ...button },
     collect: (monitor) => ({ isDragging: !!monitor.isDragging() }),
   }));
+
   return (
     <div
       ref={drag}
       className={cn(style.default, {
         [style.green]: button.style === "green",
-        [style.grey]: button.style === "gray",
+        [style.gray]: button.style === "gray",
       })}
     >
       {button.title}
