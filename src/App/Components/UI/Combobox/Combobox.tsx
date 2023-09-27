@@ -37,6 +37,14 @@ const Select: FC<ISelect> = ({
 
   return (
     <div className={style.select}>
+      <label
+        htmlFor="combobox"
+        className={cn(style.placeholder, {
+          [style.placeholder_focus]: isFocused,
+        })}
+      >
+        {placeholder}
+      </label>
       <ReactSelect
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
@@ -48,9 +56,8 @@ const Select: FC<ISelect> = ({
         isMulti={isMulti}
         onChange={onChange}
         components={AnimatedComponents}
-        required
+        inputId="combobox"
       />
-      <span>{placeholder}</span>
       <div
         className={cn(style.line, {
           [style.isFocus]: isFocused,

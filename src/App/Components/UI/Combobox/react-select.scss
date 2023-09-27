@@ -58,15 +58,22 @@
   &__menu {
     padding-bottom: 0px !important;
     margin-top: 0px !important;
-    background-color: white !important;
-    @include get-text(16px, 400, $font_JetBrains);
+    background-color: transparent !important;
+    @include get-text(16px, 400, $font_roboto);
     animation: show 0.25s ease-in-out;
   }
 
   &__option {
     cursor: pointer !important;
+    border-radius: 3px;
+    background-color: $color_navy_blue !important;
+    margin-top: 4px !important;
     &--is-focused {
-      background-color: lighten(white, 70%) !important;
+      background-color: lighten($color_navy_blue, 10%) !important;
+    }
+
+    &--is-selected {
+      background-color: lighten($color_navy_blue, 10%) !important;
     }
   }
 
@@ -77,12 +84,12 @@
     }
 
     .form-control__indicators {
-      @apply cursor-pointer;
+      cursor: pointer;
     }
   }
 
   &__menu {
-    @apply animate-scaleIn;
+    cursor: pointer;
   }
 }
 
