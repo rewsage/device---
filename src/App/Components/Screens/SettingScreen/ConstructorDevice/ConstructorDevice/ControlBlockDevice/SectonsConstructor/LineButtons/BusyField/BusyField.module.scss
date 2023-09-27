@@ -1,0 +1,22 @@
+@import "../../../../../../../../../assets/const.module.scss";
+
+.busy_field {
+  width: 100%;
+  .button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    border: $color_navy_blue 2px solid;
+    height: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .button_green {
+    background-color: $color_lime;
+  }
+  .button_grey {
+    background-color: $color_navy_blue;
+  }
+}

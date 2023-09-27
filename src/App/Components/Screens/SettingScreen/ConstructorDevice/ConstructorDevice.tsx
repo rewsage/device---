@@ -10,8 +10,9 @@ import { Button } from "../../../UI/Button/Button";
 import Select from "../../../UI/Combobox/Combobox";
 import { IOption } from "../../../UI/Combobox/combobox.interface";
 import ButtonsConstructor from "./ButtonsConstructor/ButtonsConstructor";
+import ConstructorDevice from "./ConstructorDevice/ConstructorDevice";
 
-const ConstructorDevice: FC = () => {
+ const Constructor: FC = () => {
   const {
     register,
     handleSubmit,
@@ -64,7 +65,7 @@ const ConstructorDevice: FC = () => {
           <Button type="submit">Создать</Button>
         </div>
 
-        {/* <Controller
+        <Controller
           control={control}
           name="sections"
           defaultValue={[]}
@@ -75,10 +76,11 @@ const ConstructorDevice: FC = () => {
               error={error}
             />
           )}
-        /> */}
+        />
       </form>
     </div>
   );
 };
 
-export default ConstructorDevice;
+export default Constructor
+
