@@ -16,6 +16,11 @@ const Select: FC<ISelect> = ({
   placeholder,
   error,
 }) => {
+  let defaultActive: boolean = !!field.value;
+  if (Array.isArray(field.value) && field.value.length === 0) {
+    defaultActive = false;
+  }
+
   const [isFocused, setIsFocused] = useState(false);
 
   const onChange = (newValue: unknown | OnChangeValue<IOption, boolean>) => {
@@ -40,7 +45,7 @@ const Select: FC<ISelect> = ({
       <label
         htmlFor="combobox"
         className={cn(style.placeholder, {
-          [style.placeholder_focus]: isFocused,
+          [style.placeholder_focus]: defaultActive,
         })}
       >
         {placeholder}

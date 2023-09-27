@@ -12,7 +12,7 @@ import { IOption } from "../../../UI/Combobox/combobox.interface";
 import ButtonsConstructor from "./ButtonsConstructor/ButtonsConstructor";
 import ConstructorDevice from "./ConstructorDevice/ConstructorDevice";
 
- const Constructor: FC = () => {
+const Constructor: FC = () => {
   const {
     register,
     handleSubmit,
@@ -40,6 +40,7 @@ import ConstructorDevice from "./ConstructorDevice/ConstructorDevice";
     <div className={style.screen}>
       <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
         <div className={style.left}>
+        
           <TextField
             placeholder="Название прибора"
             error={errors.name}
@@ -82,5 +83,4 @@ import ConstructorDevice from "./ConstructorDevice/ConstructorDevice";
   );
 };
 
-export default Constructor
-
+export default Constructor;

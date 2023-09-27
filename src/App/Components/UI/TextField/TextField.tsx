@@ -4,25 +4,22 @@ import style from "./TextField.module.scss";
 import cn from "classnames";
 
 const TextField: FC<IField> = forwardRef<HTMLInputElement, IField>(
-  ({ error, placeholder, ...rest }, ref) => {
+  ({ error, placeholder, value, ...rest }, ref) => {
     const [isFocused, setIsFocused] = useState(false);
+
     return (
       <div className={style.field}>
-        <label
-          htmlFor="textField"
-          className={cn(style.placeholder, {
-            [style.placeholder_focus]: isFocused,
-          })}
-        >
-          {placeholder}
-        </label>
         <input
           ref={ref}
           {...rest}
           id="textField"
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
+          required
         />
+        <label htmlFor="textField" className={style.placeholder}>
+          {placeholder}
+        </label>
         <div
           className={cn(style.line, {
             [style.isFocus]: isFocused,
