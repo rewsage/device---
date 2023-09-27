@@ -5,13 +5,18 @@
   display: block;
   position: relative;
   margin-top: 15px;
-  > span {
+  .placeholder {
     position: absolute;
     bottom: 10px;
     left: 20px;
     transition: all 0.2s linear;
     z-index: 1;
+    user-select: none;
     @include get-text(20px, 400, $font_firaCode);
+  }
+
+  .placeholder_focus {
+    transform: translate(-20px, -25px);
   }
 
   .line {
@@ -47,10 +52,6 @@
     margin-bottom: 30px;
     box-sizing: border-box;
     transition: all 0.2s linear;
-    &:focus + span,
-    &:valid + span {
-      transform: translate(-20px, -25px);
-    }
   }
   .error {
     opacity: 0;

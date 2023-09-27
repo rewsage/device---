@@ -8,14 +8,21 @@ const TextField: FC<IField> = forwardRef<HTMLInputElement, IField>(
     const [isFocused, setIsFocused] = useState(false);
     return (
       <div className={style.field}>
+        <label
+          htmlFor="textField"
+          className={cn(style.placeholder, {
+            [style.placeholder_focus]: isFocused,
+          })}
+        >
+          {placeholder}
+        </label>
         <input
           ref={ref}
           {...rest}
-          required
+          id="textField"
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
         />
-        <span>{placeholder}</span>
         <div
           className={cn(style.line, {
             [style.isFocus]: isFocused,

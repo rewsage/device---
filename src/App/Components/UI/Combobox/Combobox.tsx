@@ -37,11 +37,10 @@ const Select: FC<ISelect> = ({
 
   return (
     <div className={style.select}>
-      <span>{placeholder}</span>
       <ReactSelect
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
-        placeholder={placeholder}
+        placeholder
         isLoading={isLoading}
         classNamePrefix="custom-select"
         value={getValues()}
@@ -49,7 +48,9 @@ const Select: FC<ISelect> = ({
         isMulti={isMulti}
         onChange={onChange}
         components={AnimatedComponents}
+        required
       />
+      <span>{placeholder}</span>
       <div
         className={cn(style.line, {
           [style.isFocus]: isFocused,
