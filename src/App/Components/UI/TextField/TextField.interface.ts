@@ -3,6 +3,7 @@ import { FieldError } from "react-hook-form";
 
 interface IInputProps {
   placeholder: string;
+  margin?: number | string;
   error?: FieldError;
 }
 

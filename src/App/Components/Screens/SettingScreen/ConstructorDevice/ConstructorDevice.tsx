@@ -40,10 +40,10 @@ const Constructor: FC = () => {
     <div className={style.screen}>
       <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
         <div className={style.left}>
-        
           <TextField
             placeholder="Название прибора"
             error={errors.name}
+            margin="30px 0 60px 0"
             {...register("name", { required: "Введите название прибора!" })}
           />
           <Controller
@@ -59,6 +59,9 @@ const Constructor: FC = () => {
                 error={error}
               />
             )}
+            rules={{
+              required: { value: true, message: "Выбеерите тип прибора!" },
+            }}
           />
           <div className={style.right}>
             <ButtonsConstructor />
