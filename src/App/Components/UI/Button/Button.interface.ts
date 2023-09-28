@@ -5,6 +5,7 @@ interface IButtonProps {
   loading?: boolean;
   width?: string | number;
   height?: string | number;
+  tooltip?: string;
 }
 
 type IButtonHTML = ButtonHTMLAttributes<HTMLButtonElement> & IButtonProps;

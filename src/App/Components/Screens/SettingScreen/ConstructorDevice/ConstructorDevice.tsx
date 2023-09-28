@@ -63,24 +63,25 @@ const Constructor: FC = () => {
               required: { value: true, message: "Выбеерите тип прибора!" },
             }}
           />
-          <div className={style.right}>
-            <ButtonsConstructor />
-          </div>
-          <Button type="submit">Создать</Button>
-        </div>
 
-        <Controller
-          control={control}
-          name="sections"
-          defaultValue={[]}
-          render={({ field, fieldState: { error } }) => (
-            <ConstructorDevice
-              field={field}
-              placeholder="Кнопки"
-              error={error}
-            />
-          )}
-        />
+          <ButtonsConstructor />
+
+          <Button type="submit" tooltip="qweqwe">Создать</Button>
+        </div>
+        <div className={style.right}>
+          <Controller
+            control={control}
+            name="sections"
+            defaultValue={[]}
+            render={({ field, fieldState: { error } }) => (
+              <ConstructorDevice
+                field={field}
+                placeholder="Кнопки"
+                error={error}
+              />
+            )}
+          />
+        </div>
       </form>
     </div>
   );

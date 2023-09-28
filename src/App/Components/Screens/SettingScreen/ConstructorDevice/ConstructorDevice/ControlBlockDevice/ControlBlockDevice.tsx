@@ -1,4 +1,3 @@
-
 import { ISectionButtons } from "../../../../../../shared/Types/device.type";
 import { FC } from "react";
 import { ControllerRenderProps } from "react-hook-form";
@@ -33,9 +32,7 @@ const ControlBlockDevice: FC<IControlBlockDeviceProps> = ({
       </div>
 
       <button type="button" onClick={addSection}>
-        <div>
-          <IconLucide name="plus"/>
-        </div>
+        <IconLucide name="plus" size={40}/>
       </button>
     </div>
   );
