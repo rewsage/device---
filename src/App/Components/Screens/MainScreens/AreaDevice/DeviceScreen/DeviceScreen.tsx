@@ -5,7 +5,6 @@ import { motion, useDragControls } from "framer-motion";
 import style from "./DeviceScreen.module.scss";
 import { HeadingDevice } from "./HeadingDevice/HeadingDevice";
 import { ScreenVNC } from "./ScreenVNC/ScreenVNC";
-import { Loading } from "../../../../UI/Loading/Loading";
 import { useNoVns } from "./useNoVns";
 import { WinResize } from "./WinResize/WinResize";
 import { useResizeElement } from "./WinResize/useResizeElement";
@@ -14,7 +13,7 @@ export const DeviceScreen: FC<{ device: IInstrumentsButtons }> = ({
   device,
 }) => {
   const dragControls = useDragControls();
-  const { win, ...onMouseEvent } = useResizeElement(600, 400);
+  const { win, onResize, ...onMouseEvent } = useResizeElement(600, 400);
   const noVNC = useNoVns(device);
   return (
     <DregWrapper device={device} dragControls={dragControls}>
@@ -33,7 +32,7 @@ export const DeviceScreen: FC<{ device: IInstrumentsButtons }> = ({
           dragControls={dragControls}
           disconnect={noVNC.disconnect}
         />
-        <ScreenVNC device={device} {...noVNC} />
+        <ScreenVNC onResize={onResize} {...noVNC} />
         <WinResize {...onMouseEvent} />
       </motion.div>
     </DregWrapper>

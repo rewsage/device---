@@ -10,5 +10,5 @@ export const getContentType = () => {
 };
 
 export const baseQuery = fetchBaseQuery({
-  baseUrl: "http://192.168.88.228:3228/api/",
+  baseUrl: "http://localhost:4200/api",
 });

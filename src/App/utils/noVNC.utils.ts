@@ -4,6 +4,6 @@ export const getPasswordVNC = () => {
 
 export const getUrlVnc = (key: string) => {
   const serverIp =
-    process.env.URl_PROXY_SERVER || "ws://192.168.88.228:6080/websockify";
+    process.env.URL_PROXY_SERVER || "ws://10.11.0.228:6080/websockify";
   return serverIp + `?token=${key}`;
 };

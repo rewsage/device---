@@ -4,16 +4,7 @@ import { IInitialStateDevice } from "./device.interface";
 import { IInstrumentsButtons } from "../../shared/Types/device.type";
 
 const initialState: IInitialStateDevice = {
-  activeDevices: [
-    {
-      name: "qweqwe",
-      host: "qweqwe",
-      port: 123,
-      id: 1,
-      sections: [],
-      token: "qwe",
-    },
-  ],
+  activeDevices: [],
   focusDevice: null,
 };
 

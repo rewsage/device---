@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { IInstrumentsButtons } from "../../../../../shared/Types/device.type";
 import RFB from "../../../../../shared/noVNC/core/rfb";
 import { getUrlVnc } from "../../../../../utils/noVNC.utils";
+import { useLatest } from "../../../../../hooks/useLatest";
 
 export const useNoVns = (device: IInstrumentsButtons) => {
   useEffect(() => {
@@ -31,6 +32,7 @@ export const useNoVns = (device: IInstrumentsButtons) => {
     console.log("CONNECTED");
     setLoading(false);
     setConnected(true);
+    console.log(screen);
   };
 
   const onDisconnect = () => {
@@ -52,12 +54,11 @@ export const useNoVns = (device: IInstrumentsButtons) => {
     credentialsrequired: onCredentialsrequired,
   };
 
-  const connect = () => {
+  const connect = useCallback(() => {
     // if (!device_url) { throw 'URL is required' }
     // const res_url = `ws://${constants.server_ip}:6080/websockify?token=SA1`
 
     const _rfb = new RFB(screen.current, getUrlVnc(device.token));
-    console.log(screen);
 
     _rfb.clipViewport = true;
     _rfb.scaleViewport = true;
@@ -77,9 +78,9 @@ export const useNoVns = (device: IInstrumentsButtons) => {
     addEventListeners(_rfb);
 
     setLoading(true);
-  };
+  }, []);
 
-  const disconnect = () => {
+  const disconnect = useCallback(() => {
     const session = getRfb();
     if (!session) {
       console.error("There is no session to disconnect from");
@@ -97,7 +98,7 @@ export const useNoVns = (device: IInstrumentsButtons) => {
     session.disconnect();
     setRfb(null);
     setConnected(false);
-  };
+  }, []);
 
-  return { loading, screen, disconnect , connected, connect};
+  return { screen, disconnect, connect, loading, connected };
 };

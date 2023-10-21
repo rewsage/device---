@@ -1,10 +1,12 @@
-import { MouseEvent, useRef } from "react";
+import { MouseEvent, useRef, useState } from "react";
 
 export const useResizeElement = (minWidth: number, minHeight: number) => {
   const win = useRef<HTMLDivElement>(null);
+  const [onResize, setOnResize] = useState(false);
 
   //увеличение окна по высоте и ширине (верх + лево)
   const nwOnMouseDown = (e: MouseEvent) => {
+    setOnResize(true);
     e.stopPropagation ? e.stopPropagation() : (e.cancelable = true);
     const x = e.clientX;
     const y = e.clientY;
@@ -27,7 +29,6 @@ export const useResizeElement = (minWidth: number, minHeight: number) => {
       if (newWidth >= minWidth) {
         winEl.style.left = left - deltaX + "px";
         winEl.style.width = newWidth + "px";
-        console.log(winEl.style.width);
       }
       if (newHeight >= minHeight) {
         winEl.style.top = top - deltaY + "px";
@@ -35,6 +36,7 @@ export const useResizeElement = (minWidth: number, minHeight: number) => {
       }
     };
     document.onmouseup = function () {
+      setOnResize(false);
       document.onmousemove = null;
       document.onmouseup = null;
     };
@@ -42,6 +44,7 @@ export const useResizeElement = (minWidth: number, minHeight: number) => {
 
   // увеличение окна по высоте (верх)
   const nOnMouseDown = (e: MouseEvent) => {
+    setOnResize(true);
     e.stopPropagation ? e.stopPropagation() : (e.cancelable = true);
     const y = e.clientY;
     const winEl = win.current;
@@ -61,6 +64,7 @@ export const useResizeElement = (minWidth: number, minHeight: number) => {
       }
     };
     document.onmouseup = function () {
+      setOnResize(false);
       document.onmousemove = null;
       document.onmouseup = null;
     };
@@ -68,6 +72,7 @@ export const useResizeElement = (minWidth: number, minHeight: number) => {
 
   // увеличение окна по высоте и ширине (верх + право)
   const neOnMouseDown = (e: MouseEvent) => {
+    setOnResize(true);
     e.stopPropagation ? e.stopPropagation() : (e.cancelable = true);
     const x = e.clientX;
     const y = e.clientY;
@@ -98,6 +103,7 @@ export const useResizeElement = (minWidth: number, minHeight: number) => {
       }
     };
     document.onmouseup = function () {
+      setOnResize(false);
       document.onmousemove = null;
       document.onmouseup = null;
     };
@@ -105,6 +111,7 @@ export const useResizeElement = (minWidth: number, minHeight: number) => {
 
   // увеличение окна по ширине (право)
   const eOnMouseDown = (e: MouseEvent) => {
+    setOnResize(true);
     e.stopPropagation ? e.stopPropagation() : (e.cancelable = true);
     const x = e.clientX;
     const winEl = win.current;
@@ -121,6 +128,7 @@ export const useResizeElement = (minWidth: number, minHeight: number) => {
       }
     };
     document.onmouseup = function () {
+      setOnResize(false);
       document.onmousemove = null;
       document.onmouseup = null;
     };
@@ -128,6 +136,7 @@ export const useResizeElement = (minWidth: number, minHeight: number) => {
 
   // увеличение окна по высоте и ширине (низ + право)
   const seOnMouseDown = (e: MouseEvent) => {
+    setOnResize(true);
     e.stopPropagation ? e.stopPropagation() : (e.cancelable = true);
     const x = e.clientX;
     const y = e.clientY;
@@ -157,6 +166,7 @@ export const useResizeElement = (minWidth: number, minHeight: number) => {
       }
     };
     document.onmouseup = function () {
+      setOnResize(false);
       document.onmousemove = null;
       document.onmouseup = null;
     };
@@ -164,6 +174,7 @@ export const useResizeElement = (minWidth: number, minHeight: number) => {
 
   // увеличение окна по высоте (низ)
   const sOnMouseDown = (e: MouseEvent) => {
+    setOnResize(true);
     e.stopPropagation ? e.stopPropagation() : (e.cancelable = true);
     const y = e.clientY;
     const winEl = win.current;
@@ -183,6 +194,7 @@ export const useResizeElement = (minWidth: number, minHeight: number) => {
       }
     };
     document.onmouseup = function () {
+      setOnResize(false);
       document.onmousemove = null;
       document.onmouseup = null;
     };
@@ -190,6 +202,7 @@ export const useResizeElement = (minWidth: number, minHeight: number) => {
 
   // увеличение окна по высоте и ширине (низ + лево)
   const swOnMouseDown = (e: MouseEvent) => {
+    setOnResize(true);
     e.stopPropagation ? e.stopPropagation() : (e.cancelable = true);
     const x = e.clientX;
     const y = e.clientY;
@@ -204,7 +217,7 @@ export const useResizeElement = (minWidth: number, minHeight: number) => {
     const height = winEl.offsetHeight;
 
     document.onmousemove = function (e) {
-      const deltaX = x - e.clientX
+      const deltaX = x - e.clientX;
       const deltaY = e.clientY - y;
       const newWidth = width + deltaX;
       const newHeight = height + deltaY;
@@ -219,6 +232,7 @@ export const useResizeElement = (minWidth: number, minHeight: number) => {
       }
     };
     document.onmouseup = function () {
+      setOnResize(false);
       document.onmousemove = null;
       document.onmouseup = null;
     };
@@ -226,6 +240,7 @@ export const useResizeElement = (minWidth: number, minHeight: number) => {
 
   // увеличение окна по ширине (лево)
   const wOnMouseDown = (e: MouseEvent) => {
+    setOnResize(true);
     e.stopPropagation ? e.stopPropagation() : (e.cancelable = true);
     const x = e.clientX;
     const winEl = win.current;
@@ -234,7 +249,7 @@ export const useResizeElement = (minWidth: number, minHeight: number) => {
     const width = winEl.offsetWidth;
 
     document.onmousemove = function (e) {
-      const deltaX = x - e.clientX
+      const deltaX = x - e.clientX;
       const newWidth = width + deltaX;
 
       if (newWidth >= minWidth) {
@@ -242,6 +257,7 @@ export const useResizeElement = (minWidth: number, minHeight: number) => {
       }
     };
     document.onmouseup = function () {
+      setOnResize(false);
       document.onmousemove = null;
       document.onmouseup = null;
     };
@@ -256,6 +272,7 @@ export const useResizeElement = (minWidth: number, minHeight: number) => {
     sOnMouseDown,
     swOnMouseDown,
     wOnMouseDown,
+    onResize,
     win,
   };
 };
