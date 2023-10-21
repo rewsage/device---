@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { IInitialStateDevice } from "./device.interface";
+import { DeviceRedux, IInitialStateDevice } from "./device.interface";
 import { IInstrumentsButtons } from "../../shared/Types/device.type";
 
 const initialState: IInitialStateDevice = {
@@ -13,6 +13,7 @@ export const deviceSlice = createSlice({
   initialState,
   reducers: {
     addActiveDevice: (state, action: PayloadAction<IInstrumentsButtons>) => {
+
       state.activeDevices.push(action.payload);
       state.focusDevice = action.payload;
     },
@@ -21,7 +22,8 @@ export const deviceSlice = createSlice({
         (item) => item.id !== action.payload
       );
       if (state.focusDevice?.id === action.payload) {
-        state.focusDevice = state.activeDevices[state.activeDevices.length - 1];
+        state.focusDevice =
+          state.activeDevices[state.activeDevices.length - 1] || null;
       }
     },
 

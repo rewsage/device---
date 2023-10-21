@@ -1,11 +1,18 @@
 @import "../../../../assets/const.module.scss";
 
-.container {
-  max-height: 800px;
-  width: 280px;
-  padding: 8px;
-  display: block;
-  background-color: $color_navy_blue;
-  border-radius: 8px;
-  overflow-y: auto;
+.buttons {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  right: 16px;
+  z-index: 100;
+  .container {
+    height: 800px;
+    width: 280px;
+    padding: 8px;
+    display: block;
+    background-color: $color_navy_blue_opacity;
+    border-radius: 8px;
+    overflow-y: auto;
+  }
 }
