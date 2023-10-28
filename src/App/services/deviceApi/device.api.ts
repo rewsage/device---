@@ -1,9 +1,6 @@
 import { createApi } from "@reduxjs/toolkit/dist/query/react";
 import { baseQuery } from "../axios";
-import {
-  IInstrumentsButtons,
-  IResponseScan,
-} from "../../shared/Types/device.type";
+import { IInstrumentsButtons } from "../../shared/Types/device.type";
 import { IConstructor } from "../../Components/Screens/SettingScreen/ConstructorDevice/ConstructorDevice.interface";
 
 export const deviceApi = createApi({

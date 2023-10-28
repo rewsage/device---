@@ -13,7 +13,6 @@
     "@novnc/novnc": "^1.4.0",
     "@reduxjs/toolkit": "^1.9.3",
     "@types/node": "^18.15.11",
-    "axios": "^1.3.5",
     "classnames": "^2.3.2",
     "framer-motion": "^10.12.2",
     "lucide-react": "^0.279.0",

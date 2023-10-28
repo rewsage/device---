@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { IInstrumentsButtons } from "../../../../../shared/Types/device.type";
 import RFB from "../../../../../shared/noVNC/core/rfb";
-import { getUrlVnc } from "../../../../../utils/noVNC.utils";
+import { getPasswordVNC, getUrlVnc } from "../../../../../utils/noVNC.utils";
 import { useLatest } from "../../../../../hooks/useLatest";
 
 export const useNoVns = (device: IInstrumentsButtons) => {
@@ -41,7 +41,7 @@ export const useNoVns = (device: IInstrumentsButtons) => {
   const onCredentialsrequired = () => {
     const session = getRfb();
     if (session) {
-      session.sendCredentials({ password: "894129" });
+      session.sendCredentials({ password: getPasswordVNC() });
     }
   };
 

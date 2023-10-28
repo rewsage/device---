@@ -1,9 +1,9 @@
 export const getPasswordVNC = () => {
-  return process.env.PASSWORD_VNC || "";
+  return import.meta.env.VITE_PASSWORD_VNC || "";
 };
 
 export const getUrlVnc = (key: number) => {
   const serverIp =
-    process.env.URL_PROXY_SERVER || "ws://10.11.0.228:6080/websockify";
+    import.meta.env.VITE_URL_PROXY_SERVER || "ws://10.11.0.228:6080/websockify";
   return serverIp + `?token=${key}`;
 };
