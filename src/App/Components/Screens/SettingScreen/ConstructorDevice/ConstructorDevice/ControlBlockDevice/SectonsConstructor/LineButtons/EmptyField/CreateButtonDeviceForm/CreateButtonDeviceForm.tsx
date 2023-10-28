@@ -11,6 +11,7 @@ import { buttonsOptionData } from "./StyleButtonsSelect.data";
 import { Button } from "../../../../../../../../../UI/Button/Button";
 import { stopPropagate } from "../../../../../../../../../../utils/stopPropagate.utils";
 import { TypeCreateButtonDevice } from "../../useLineButtons.inderface";
+import { CreateButton } from "../../../../../../ConstructorDevice.interface";
 
 interface ICreateButtonDeviceFormProps {
   createButtonDevice: TypeCreateButtonDevice;
@@ -36,11 +37,11 @@ const CreateButtonDeviceForm: FC<ICreateButtonDeviceFormProps> = ({
     setValue,
     control,
     reset,
-  } = useForm<IButtonDevices>({ mode: "onChange" });
+  } = useForm<NonNullable<CreateButton>>({ mode: "onChange" });
 
-  const toggleSubmit: SubmitHandler<IButtonDevices> = (data) => {
+  const updateButton: SubmitHandler<NonNullable<CreateButton>> = (data) => {
     createButtonDevice(data, idSection, lineNumber, index);
-    reset();
+    setActiveModal(false);
   };
 
   useEffect(() => {
@@ -50,8 +51,9 @@ const CreateButtonDeviceForm: FC<ICreateButtonDeviceFormProps> = ({
   return (
     <form
       className={style.form}
-      onSubmit={stopPropagate(handleSubmit(toggleSubmit))}
+      onSubmit={stopPropagate(handleSubmit(updateButton))}
     >
+      <span className={style.title}>Создание кнопки</span>
       <Field
         placeholder="Title"
         error={errors.title}
@@ -64,9 +66,9 @@ const CreateButtonDeviceForm: FC<ICreateButtonDeviceFormProps> = ({
         })}
       />
       <Field
-        placeholder="id"
-        error={errors.id}
-        {...register("id", { required: "Введите id кнопки!" })}
+        placeholder="Token"
+        error={errors.token}
+        {...register("token", { required: "Введите token кнопки!" })}
       />
       <Controller
         control={control}
@@ -83,11 +85,14 @@ const CreateButtonDeviceForm: FC<ICreateButtonDeviceFormProps> = ({
           />
         )}
       />
-
-      <Button type="button" onClick={() => setActiveModal(false)}>
-        Отмена
-      </Button>
-      <Button type="submit">Создать</Button>
+      <div className={style.buttons}>
+        <Button type="submit" icon="plus">
+          Создать
+        </Button>
+        <Button type="button" onClick={() => setActiveModal(false)}>
+          Отмена
+        </Button>
+      </div>
     </form>
   );
 };

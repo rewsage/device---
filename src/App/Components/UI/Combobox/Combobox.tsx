@@ -8,7 +8,7 @@ import cn from "classnames";
 
 const AnimatedComponents = makeAnimated();
 
-const Select: FC<ISelect> = ({
+const Select = <T,>({
   field,
   isLoading,
   isMulti,
@@ -16,7 +16,7 @@ const Select: FC<ISelect> = ({
   placeholder,
   margin,
   error,
-}) => {
+}: ISelect<T>) => {
   let defaultActive: boolean = !!field.value;
   if (Array.isArray(field.value) && field.value.length === 0) {
     defaultActive = false;
@@ -32,11 +32,11 @@ const Select: FC<ISelect> = ({
     }
   }
 
-  const onChange = (newValue: unknown | OnChangeValue<IOption, boolean>) => {
+  const onChange = (newValue: unknown | OnChangeValue<IOption<T>, boolean>) => {
     field.onChange(
       isMulti
-        ? (newValue as IOption[]).map((val) => val.value)
-        : (newValue as IOption).value
+        ? (newValue as IOption<T>[]).map((val) => val.value)
+        : (newValue as IOption<T>).value
     );
     setIsFocused(false);
   };

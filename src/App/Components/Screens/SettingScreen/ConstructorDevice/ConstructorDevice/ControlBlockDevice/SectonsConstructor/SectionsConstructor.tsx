@@ -4,7 +4,7 @@ import { ControllerRenderProps } from "react-hook-form";
 import LineButtons from "./LineButtons/LineButtons";
 import style from "./SectionConstructor.module.scss";
 import { useSectionConstructor } from "./useSectionConstructor";
-import { IconLucide } from "../../../../../../UI/Icon/Icon";
+import { Icon, IconLucide } from "../../../../../../UI/Icon/Icon";
 
 interface ISectionConstructorProps {
   section: ISectionButtons;
@@ -27,7 +27,7 @@ const SectionsConstructor: FC<ISectionConstructorProps> = ({
   return (
     <div className={style.container}>
       <button type="button" onClick={() => removeSections(section.idSection)}>
-        <IconLucide name="trash-2" />
+        <Icon name="delete" />
       </button>
       <div className={style.fields}>
         {section.buttons.map((item, index) => (
@@ -46,28 +46,28 @@ const SectionsConstructor: FC<ISectionConstructorProps> = ({
           onClick={() => removeLineButtons(section.idSection)}
           className={style.top_button}
         >
-          <IconLucide name="trash-2" />
+          <Icon name="delete" />
         </button>
         <button
           type="button"
           onClick={() => addColumnButtons(section.idSection)}
           className={style.right_button}
         >
-          <IconLucide name="plus" />
+          <Icon name="plus" />
         </button>
         <button
           type="button"
           onClick={() => addLineButtons(section.idSection)}
           className={style.bottom_button}
         >
-          <IconLucide name="plus" />
+          <Icon name="plus" />
         </button>
         <button
           type="button"
           onClick={() => removeColumnButtons(section.idSection)}
           className={style.left_button}
         >
-          <IconLucide name="trash-2" />
+          <Icon name="delete" />
         </button>
       </div>
     </div>

@@ -1,9 +1,6 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { IConstructor } from "./ConstructorDevice.interface";
-import useFormPersist from "react-hook-form-persist";
-import { sessionStorageWrapper } from "../../../../utils/storage-wrapper.utils";
-
 import style from "./Constructor.module.scss";
 import TextField from "../../../UI/TextField/TextField";
 import { Button } from "../../../UI/Button/Button";
@@ -11,6 +8,12 @@ import Select from "../../../UI/Combobox/Combobox";
 import { IOption } from "../../../UI/Combobox/combobox.interface";
 import ButtonsConstructor from "./ButtonsConstructor/ButtonsConstructor";
 import ConstructorDevice from "./ConstructorDevice/ConstructorDevice";
+import { useConstructorDevice } from "./useConstructorDevice";
+import { Portal } from "../../../Providers/Portal/Portal";
+import { Modal } from "../../../UI/Modal/Modal";
+import { Loading } from "../../../UI/Loading/Loading";
+import { useGetAllDevicesQuery } from "../../../../services/deviceApi/device.api";
+import { regIPv4 } from "../../../../shared/Regular/ip.validate";
 
 const Constructor: FC = () => {
   const {
@@ -22,28 +25,51 @@ const Constructor: FC = () => {
     formState: { errors },
   } = useForm<IConstructor>({ mode: "onChange" });
 
-  useFormPersist("sessionStorage/Constructor", {
-    watch,
+  const { isFetching, onSubmit, updateLoading } = useConstructorDevice(
     setValue,
-    storage: sessionStorageWrapper,
+    watch
+  );
+  const {
+    data,
+    isLoading: isLoadingType,
+    allData,
+  } = useGetAllDevicesQuery(undefined, {
+    selectFromResult: ({ data, isLoading }) => ({
+      data: data?.map(
+        (item) =>
+          ({ label: item.name, value: item.id } as IOption<number | string>)
+      ),
+      allData: data,
+      isLoading: isLoading,
+    }),
   });
 
-  const onSubmit: SubmitHandler<IConstructor> = (data) => {
-    console.log(data);
-  };
-  const dataOptions: IOption[] = [
-    { label: "Новый", value: "new" },
-    { label: "какой-то прибор", value: "1" },
-  ];
+  const typeSections = watch("type");
+
+  useEffect(() => {
+    if (typeof typeSections === "string") return setValue("sections", []);
+    if (allData) {
+      const device = allData.find((item) => item.id === typeSections);
+      if (device) setValue("sections", device.sections);
+    }
+  }, [typeSections]);
 
   return (
     <div className={style.screen}>
+      {isFetching ||
+        (updateLoading && (
+          <Portal>
+            <Modal isClosesModal={false} close={() => {}} isActive>
+              <Loading />
+            </Modal>
+          </Portal>
+        ))}
       <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
         <div className={style.left}>
           <TextField
             placeholder="Название прибора"
             error={errors.name}
-            margin="30px 0 60px 0"
+            margin="30px 0 50px 0"
             {...register("name", { required: "Введите название прибора!" })}
           />
           <Controller
@@ -52,10 +78,13 @@ const Constructor: FC = () => {
             render={({ field, fieldState: { error } }) => (
               <Select
                 field={field}
-                isLoading={false}
+                isLoading={isLoadingType}
                 isMulti={false}
                 placeholder="Выберите кнопки"
-                options={dataOptions}
+                options={[
+                  { label: "Новый прибор", value: "new" },
+                  ...(data ? data : []),
+                ]}
                 error={error}
               />
             )}
@@ -63,10 +92,33 @@ const Constructor: FC = () => {
               required: { value: true, message: "Выбеерите тип прибора!" },
             }}
           />
+          <TextField
+            placeholder="Host"
+            error={errors.host}
+            margin="50px 0 0 0"
+            {...register("host", {
+              required: "Введите хост прибора!",
+              pattern: {
+                value: regIPv4,
+                message: "Введите корректное значение",
+              },
+            })}
+          />
+          <TextField
+            placeholder="Port"
+            error={errors.port}
+            type="number"
+            margin="50px 0 0 0"
+            {...register("port", {
+              required: "Введите порт прибора!",
+            })}
+          />
 
           <ButtonsConstructor />
 
-          <Button type="submit" tooltip="qweqwe">Создать</Button>
+          <Button type="submit" icon="edit">
+            Сохранить
+          </Button>
         </div>
         <div className={style.right}>
           <Controller

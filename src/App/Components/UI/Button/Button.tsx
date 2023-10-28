@@ -3,15 +3,17 @@ import { IButton } from "./Button.interface";
 import style from "./Button.module.scss";
 import cn from "classnames";
 import { Tooltip } from "../Tooltip/Tooltip";
+import { Icon } from "../Icon/Icon";
 
 export const Button: FC<IButton> = ({
   children,
   flat,
   disabled,
   loading,
-  width = 100,
-  height = 20,
+  width,
+  height,
   tooltip,
+  icon,
   ...props
 }) => {
   let isActive = true;
@@ -21,8 +23,8 @@ export const Button: FC<IButton> = ({
 
   const toggleTooltip = (e: MouseEvent) => {
     if (!tooltip || tooltip === "") return;
-    setShowTooltip((prev) => !prev);
     setEvent(e);
+    setShowTooltip((prev) => !prev);
   };
 
   if (typeof width === "number") {
@@ -35,6 +37,7 @@ export const Button: FC<IButton> = ({
   return (
     <>
       <button
+        disabled={disabled}
         onMouseEnter={(e) => toggleTooltip(e)}
         onMouseLeave={(e) => toggleTooltip(e)}
         style={{ width, height }}
@@ -45,7 +48,14 @@ export const Button: FC<IButton> = ({
           [style.loading]: loading,
         })}
       >
-        {children}
+        {icon ? (
+          <span className={style.icon}>
+            <Icon name={icon} />
+            {children}
+          </span>
+        ) : (
+          children
+        )}
       </button>
       {showTooltip && <Tooltip text={tooltip || ""} e={event || undefined} />}
     </>

@@ -1,8 +1,11 @@
+import { useState } from "react";
 import { IInstrumentsButtons } from "../../../../shared/Types/device.type";
 import { Button } from "../../../UI/Button/Button";
 import { IColumn } from "../../../UI/Grid/Grid.interface";
 import { Icon } from "../../../UI/Icon/Icon";
 import style from "./TableDevice.module.scss";
+import { Confirm } from "../../../UI/Msg/Confirm/Confirm";
+import { useRemoveDeviceMutation } from "../../../../services/deviceApi/device.api";
 
 export const columnsDevice: IColumn<IInstrumentsButtons>[] = [
   {
@@ -34,14 +37,30 @@ export const columnsDevice: IColumn<IInstrumentsButtons>[] = [
     title: "Actions",
     dataIndex: "id",
     renderer(value, record) {
+      const [conf, setConf] = useState(false);
+      const [trigger] = useRemoveDeviceMutation();
       return (
         <span className={style.actions}>
-          <Button>
+          <Button flat>
             <Icon name="edit" className={style.button_edit} />
           </Button>
-          <Button>
+          <Button flat onClick={() => setConf(true)}>
             <Icon name="delete" className={style.button_delete} />
           </Button>
+          {conf && (
+            <Confirm
+              type="delete"
+              title="Удаление"
+              text="Данный прибор будет безвозвратно удален. Продолжить?"
+              fn={() => {
+                console.log(value);
+                if (typeof value === "number") {
+                  trigger(value);
+                }
+              }}
+              show={setConf}
+            />
+          )}
         </span>
       );
     },

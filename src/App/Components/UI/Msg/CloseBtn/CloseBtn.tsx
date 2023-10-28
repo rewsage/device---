@@ -1,6 +1,6 @@
 import { FC } from "react";
 import style from "./CloseBtn.module.scss";
-import { IconLucide } from "../../Icon/Icon";
+import { Icon, IconLucide } from "../../Icon/Icon";
 
 
 interface ICloseBtnProps {
@@ -10,7 +10,7 @@ interface ICloseBtnProps {
 export const CloseBtn: FC<ICloseBtnProps> = ({ close }) => {
   return (
     <div className={style.btn} onClick={close}>
-      <IconLucide name="x" />
+      <Icon name="x"/>
     </div>
   );
 };

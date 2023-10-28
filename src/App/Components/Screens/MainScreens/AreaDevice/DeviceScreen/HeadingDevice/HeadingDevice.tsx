@@ -4,19 +4,23 @@ import style from "./HeadingDevice.module.scss";
 import { useAppDispatch } from "../../../../../../hooks/useAppDispatch";
 import { deviceActions } from "../../../../../../store/device/device.slice";
 import { DragControls } from "framer-motion";
-import { IconLucide } from "../../../../../UI/Icon/Icon";
-
+import { Icon, IconLucide } from "../../../../../UI/Icon/Icon";
+import cn from "classnames";
 
 interface IHeadingDeviceProps {
   device: IInstrumentsButtons;
   dragControls: DragControls;
   disconnect: () => void;
+  openFullScreen: (value: boolean) => void;
+  fullScreen: boolean;
 }
 
 export const HeadingDevice: FC<IHeadingDeviceProps> = ({
   device,
   dragControls,
   disconnect,
+  openFullScreen,
+  fullScreen,
 }) => {
   const dispatch = useAppDispatch();
 
@@ -31,15 +35,14 @@ export const HeadingDevice: FC<IHeadingDeviceProps> = ({
     >
       <div className={style.name}>{device.name}</div>
       <div className={style.buttons}>
-        {/* <button className={style.turn}>-</button> */}
-        <button className={style.increase}>
-          <IconLucide name="maximize-2" />
+        <button className={style.increase} onClick={() => openFullScreen(true)}>
+          <Icon name="maximize" />
         </button>
         <button
           className={style.closed}
           onClick={() => handlerClick(device.id)}
         >
-          <IconLucide name="x" />
+          <Icon name="x" />
         </button>
       </div>
     </div>

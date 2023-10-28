@@ -5,9 +5,6 @@ import { getUrlVnc } from "../../../../../utils/noVNC.utils";
 import { useLatest } from "../../../../../hooks/useLatest";
 
 export const useNoVns = (device: IInstrumentsButtons) => {
-  useEffect(() => {
-    connect();
-  }, []);
   enum Events {
     connect,
     disconnect,
@@ -16,7 +13,7 @@ export const useNoVns = (device: IInstrumentsButtons) => {
   const [loading, setLoading] = useState(false);
   const [connected, setConnected] = useState(false);
 
-  const screen = useRef<HTMLDivElement>(null);
+  const screen = useRef<HTMLDivElement | null>(null);
   const rfb = useRef<RFB | null>(null);
   const device_url = useRef<string | null>(null);
 
@@ -57,9 +54,7 @@ export const useNoVns = (device: IInstrumentsButtons) => {
   const connect = useCallback(() => {
     // if (!device_url) { throw 'URL is required' }
     // const res_url = `ws://${constants.server_ip}:6080/websockify?token=SA1`
-
-    const _rfb = new RFB(screen.current, getUrlVnc(device.token));
-
+    const _rfb = new RFB(screen.current, getUrlVnc(device.id));
     _rfb.clipViewport = true;
     _rfb.scaleViewport = true;
     _rfb.qualityLevel = 9;

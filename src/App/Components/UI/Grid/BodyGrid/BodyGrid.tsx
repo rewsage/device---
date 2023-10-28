@@ -23,7 +23,7 @@ export function BodyGrid<T>({
     <div className={style.body}>
       {data.map((record, index) => (
         <div key={index} className={style.row}>
-          {numberingRecord && <div className={style.value}>{index}</div>}
+          {numberingRecord && <div className={style.value}>{++index}</div>}
           {columns.map((column, columnIndex) => (
             <div
               style={

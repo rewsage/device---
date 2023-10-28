@@ -1,22 +1,46 @@
 @import "../../../../../../../../../assets/const.module.scss";
+@import "../../../../../../../../../assets/mixins.module.scss";
 
 .busy_field {
   width: 100%;
+  cursor: pointer;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
   .button {
     width: 100%;
+    height: 2.5rem;
+    text-transform: uppercase;
+    background-color: white;
+    border-radius: 3px;
+    white-space: pre-line;
+    box-sizing: border-box;
+    @include get-text(14px, 600, $font_JetBrains, "black");
+    -webkit-box-shadow: -5px -5px 19px 0px rgba(34, 60, 80, 0.6) inset;
+    -moz-box-shadow: -5px -5px 19px 0px rgba(34, 60, 80, 0.6) inset;
+    box-shadow: 0px 3px rgb(212, 211, 211), 2px 3px rgb(212, 211, 211),
+      2px 1px rgb(212, 211, 211);
     display: flex;
     justify-content: center;
     align-items: center;
-    box-sizing: border-box;
-    border: $color_navy_blue 2px solid;
-    height: 30px;
-    border-radius: 5px;
-    cursor: pointer;
   }
   .button_green {
-    background-color: $color_lime;
+    box-shadow: 0px 3px rgb(100, 155, 75), 2px 3px rgb(100, 155, 75),
+      2px 1px rgb(100, 155, 75);
+    -moz-box-shadow: 0px 3px rgb(100, 155, 75), 2px 3px rgb(100, 155, 75),
+      2px 1px rgb(100, 155, 75);
+    -webkit-box-shadow: 0px 3px rgb(100, 155, 75), 2px 3px rgb(100, 155, 75),
+      2px 1px rgb(100, 155, 75);
+    background-color: $color_green;
   }
   .button_grey {
-    background-color: $color_navy_blue;
+    background-color: $color_asphalt_gray;
+    box-shadow: 0px 3px rgb(112, 112, 112), 2px 3px rgb(112, 112, 112),
+      2px 1px rgb(112, 112, 112);
+    -moz-box-shadow: 0px 3px rgb(112, 112, 112), 2px 3px rgb(112, 112, 112),
+      2px 1px rgb(112, 112, 112);
+    -webkit-box-shadow: 0px 3px rgb(112, 112, 112), 2px 3px rgb(112, 112, 112),
+      2px 1px rgb(112, 112, 112);
+    color: white;
   }
 }

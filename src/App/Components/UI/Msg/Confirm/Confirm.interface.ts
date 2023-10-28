@@ -1,9 +1,9 @@
 import { HTMLAttributes, ReactElement } from "react";
-import { IconName } from "../../../../shared/Types/icon.type";
 
 interface IConfirmProps {
   title: string;
   text: string;
+  show: (value: boolean) => void;
   fn: (...args: any) => void;
   icon?: ReactElement;
   type?: "delete";

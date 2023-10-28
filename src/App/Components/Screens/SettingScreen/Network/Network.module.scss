@@ -1,0 +1,37 @@
+@import "../../../../assets/const.module.scss";
+
+.network {
+  width: 70%;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  display: block;
+  top: 20%;
+  .bbar {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    width: 100%;
+  }
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.actions {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  grid-gap: 10px;
+  .button_edit {
+    fill: white;
+    transition: all 0.3s linear;
+    &:hover {
+      fill: $color_lime;
+    }
+  }
+}

@@ -17,12 +17,12 @@
 
   &__single-value {
     padding-left: 15px !important;
-    @include get-text(16px, 400, $font_JetBrains);
+    @include get-text(14px, 300, $font_firaCode);
   }
 
   &__input-container {
     padding-left: 15px !important;
-    @include get-text(16px, 400, $font_JetBrains);
+    @include get-text(14px, 300, $font_firaCode);
   }
 
   &__indicator-separator {
@@ -42,7 +42,7 @@
   }
 
   &__multi-value__label {
-    @include get-text(16px, 400, $font_JetBrains);
+    @include get-text(14px, 300, $font_firaCode);
   }
 
   &__multi-value__remove {
@@ -59,6 +59,7 @@
     padding-bottom: 0px !important;
     margin-top: 0px !important;
     background-color: transparent !important;
+    z-index: 10 !important;
     @include get-text(16px, 400, $font_roboto);
     animation: show 0.25s ease-in-out;
   }
@@ -68,6 +69,7 @@
     border-radius: 3px;
     background-color: $color_navy_blue !important;
     margin-top: 4px !important;
+    z-index: 10 !important;
     &--is-focused {
       background-color: lighten($color_navy_blue, 10%) !important;
     }

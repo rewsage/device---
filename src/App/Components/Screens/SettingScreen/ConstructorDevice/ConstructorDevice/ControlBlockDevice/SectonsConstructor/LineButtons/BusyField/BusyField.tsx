@@ -2,12 +2,13 @@ import { IButtonDevices } from "../../../../../../../../../shared/Types/device.t
 import { FC, useState } from "react";
 import style from "./BusyField.module.scss";
 import cn from "classnames";
-import {Modal} from "../../../../../../../../UI/Modal/Modal";
+import { Modal } from "../../../../../../../../UI/Modal/Modal";
 import UpdateButtonDeviceForm from "./UpdateButtonDeviceForm/UpdateButtonDeviceForm";
 import {
   TypeDeleteButtonDevice,
   TypeCreateButtonDevice,
 } from "../useLineButtons.inderface";
+import { Portal } from "../../../../../../../../Providers/Portal/Portal";
 
 interface IBusyFieldProps {
   button: IButtonDevices;
@@ -30,9 +31,18 @@ const BusyField: FC<IBusyFieldProps> = (props) => {
       >
         {props.button.title}
       </div>
-      <Modal isActive={isActiveModal} close={()=> setIsActiveModal(false)}>
-        <UpdateButtonDeviceForm {...props} setActiveModal={setIsActiveModal} />
-      </Modal>
+      <Portal>
+        <Modal
+          isActive={isActiveModal}
+          isClosesModal
+          close={() => setIsActiveModal(false)}
+        >
+          <UpdateButtonDeviceForm
+            {...props}
+            setActiveModal={setIsActiveModal}
+          />
+        </Modal>
+      </Portal>
     </div>
   );
 };

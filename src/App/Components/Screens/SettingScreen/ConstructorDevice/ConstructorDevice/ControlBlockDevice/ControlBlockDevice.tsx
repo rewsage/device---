@@ -1,9 +1,10 @@
 import { ISectionButtons } from "../../../../../../shared/Types/device.type";
-import { FC } from "react";
+import { FC, MouseEvent, useState } from "react";
 import { ControllerRenderProps } from "react-hook-form";
 import style from "./ControlBlockDevice.module.scss";
 import SectionsConstructor from "./SectonsConstructor/SectionsConstructor";
-import { IconLucide } from "../../../../../UI/Icon/Icon";
+import { Icon, IconLucide } from "../../../../../UI/Icon/Icon";
+import { Tooltip } from "../../../../../UI/Tooltip/Tooltip";
 
 interface IControlBlockDeviceProps {
   addSection: () => void;
@@ -18,6 +19,13 @@ const ControlBlockDevice: FC<IControlBlockDeviceProps> = ({
   removeSection,
   buttons,
 }) => {
+  //   const [showTooltip, setShowTooltip] = useState(false);
+  //   const [event, setEvent] = useState<MouseEvent | null>(null);
+
+  //   const toggleTooltip = (e: MouseEvent) => {
+  //     // setEvent(e);
+  //     setShowTooltip((prev) => !prev);
+  //   };
   return (
     <div className={style.container}>
       <div>
@@ -31,9 +39,17 @@ const ControlBlockDevice: FC<IControlBlockDeviceProps> = ({
         ))}
       </div>
 
-      <button type="button" onClick={addSection}>
-        <IconLucide name="plus" size={40}/>
+      <button
+        type="button"
+        onClick={addSection}
+        // onMouseEnter={(e) => toggleTooltip(e)}
+        // onMouseLeave={(e) => toggleTooltip(e)}
+      >
+        <Icon name="plus" />
       </button>
+      {/* {showTooltip && (
+        <Tooltip text={"Добавить новую секцию"} e={event || undefined} />
+      )} */}
     </div>
   );
 };

@@ -20,7 +20,7 @@ export const TaskBar: FC = () => {
           ))}
         </div>
         <button disabled={isLoading} onClick={() => setIsOpen(true)}>
-          <Icon name="plus" />
+          <Icon name="plus" className={style.icon} />
         </button>
       </div>
 

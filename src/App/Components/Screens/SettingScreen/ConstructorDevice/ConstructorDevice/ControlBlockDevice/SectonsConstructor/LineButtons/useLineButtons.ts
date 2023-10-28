@@ -3,10 +3,11 @@ import {
   ISectionButtons,
 } from "../../../../../../../../shared/Types/device.type";
 import { ControllerRenderProps } from "react-hook-form";
+import { CreateButton } from "../../../../ConstructorDevice.interface";
 
 export const useLineButtons = (field: ControllerRenderProps<any, any>) => {
   const createButtonDevice = (
-    data: IButtonDevices,
+    data: NonNullable<CreateButton>,
     idSection: number,
     lineNumber: number,
     index: number

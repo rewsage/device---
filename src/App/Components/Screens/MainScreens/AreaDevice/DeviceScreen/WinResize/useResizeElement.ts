@@ -1,6 +1,9 @@
 import { MouseEvent, useRef, useState } from "react";
 
-export const useResizeElement = (minWidth: number, minHeight: number) => {
+export const useResizeElement = (
+  minWidth: number,
+  minHeight: number,
+) => {
   const win = useRef<HTMLDivElement>(null);
   const [onResize, setOnResize] = useState(false);
 

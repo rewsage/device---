@@ -8,6 +8,11 @@ import { ReactComponent as ButtonsIcon } from "../../../assets/Icons/buttons.svg
 import { ReactComponent as EditIcon } from "../../../assets/Icons/edit.svg";
 import { ReactComponent as DeleteIcon } from "../../../assets/Icons/delete.svg";
 import { ReactComponent as AddIcon } from "../../../assets/Icons/add.svg";
+import { ReactComponent as HomeIcon } from "../../../assets/Icons/home.svg";
+import { ReactComponent as RadarIcon } from "../../../assets/Icons/radar.svg";
+import { ReactComponent as XIcon } from "../../../assets/Icons/x.svg";
+import { ReactComponent as MaximizeIcon } from "../../../assets/Icons/maximize.svg";
+import { ReactComponent as MinimizeIcon } from "../../../assets/Icons/minimize.svg";
 import { LucideProps } from "lucide-react";
 import dynamicIconImports from "lucide-react/dynamicIconImports";
 import { IconName, TypeIconsName } from "../../../shared/Types/icon.type";
@@ -24,6 +29,11 @@ export const icons = {
   edit: EditIcon,
   delete: DeleteIcon,
   add: AddIcon,
+  home: HomeIcon,
+  radar: RadarIcon,
+  x: XIcon,
+  maximize: MaximizeIcon,
+  minimize: MinimizeIcon,
 };
 
 export const Icon = ({

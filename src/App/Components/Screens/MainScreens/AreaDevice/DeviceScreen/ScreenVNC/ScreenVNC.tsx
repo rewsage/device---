@@ -1,17 +1,21 @@
-import { FC, RefObject, memo, useEffect, useRef, useState } from "react";
+import { FC, RefObject, memo, forwardRef, useEffect } from "react";
 import style from "./ScreenVNC.module.scss";
 import { Loading } from "../../../../../UI/Loading/Loading";
 
 interface IScreenVNC {
   onResize: boolean;
-  screen: RefObject<HTMLDivElement>;
   loading: boolean;
   connected: boolean;
   connect: () => void;
+  disconnect: () => void;
 }
 
-export const ScreenVNC: FC<IScreenVNC> = memo(
-  ({ screen, onResize, connected, loading, connect }) => {
+export const ScreenVNC = forwardRef<HTMLDivElement, IScreenVNC>(
+  ({ onResize, connected, loading, connect, disconnect }, ref) => {
+    useEffect(() => {
+      connect();
+      return () => disconnect();
+    }, []);
     return (
       <div className={style.body_screen}>
         {loading && (
@@ -26,7 +30,7 @@ export const ScreenVNC: FC<IScreenVNC> = memo(
           </div>
         )}
         {onResize && <div className={style.stub_resize} />}
-        <div ref={screen} className={style.novnc_canvas}></div>
+        <div ref={ref} className={style.novnc_canvas} />
       </div>
     );
   }

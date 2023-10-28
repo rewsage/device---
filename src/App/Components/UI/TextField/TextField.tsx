@@ -24,6 +24,7 @@ const TextField: FC<IField> = forwardRef<HTMLInputElement, IField>(
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           required
+          autocomplete="off"
         />
         <label htmlFor="textField" className={style.placeholder}>
           {placeholder}

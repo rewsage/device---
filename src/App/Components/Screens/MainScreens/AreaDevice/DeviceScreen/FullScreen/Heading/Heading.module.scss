@@ -1,0 +1,37 @@
+@import "../../../../../../../assets/mixins.module.scss";
+
+.heading {
+  display: flex;
+  height: 30px;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 5px;
+  position: relative;
+  .name {
+    @include get-text(20px, 500);
+  }
+  .buttons {
+    position: absolute;
+    top: 7px;
+    right: 15px;
+    display: flex;
+    align-items: center;
+    grid-gap: 20px;
+    @include get-text(25px, 500);
+    > button {
+      width: 20px;
+      border-radius: 50%;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+    .increase {
+      background-color: #ff774b;
+    }
+    .closed {
+      background-color: #df5050;
+    }
+  }
+}

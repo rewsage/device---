@@ -1,0 +1,11 @@
+.status {
+  display: block;
+  border-radius: 50%;
+  background-color: rgba(175, 241, 40, 1);
+  box-shadow: 0px 0px 5px 1px rgba(175, 241, 40, 0.64);
+}
+
+.error {
+  background-color: rgba(189, 47, 47, 1);
+  box-shadow: 0px 0px 5px 1px rgba(189, 47, 47, 0.64);
+}

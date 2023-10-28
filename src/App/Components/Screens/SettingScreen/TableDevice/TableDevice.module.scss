@@ -17,13 +17,16 @@
       justify-content: center;
       fill: $color_lime;
       transition: all 0.3s linear;
-      &:hover{
+      &:hover {
         opacity: 0.8;
       }
     }
   }
 }
 .actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   .button_edit {
     fill: white;
     transition: all 0.3s linear;

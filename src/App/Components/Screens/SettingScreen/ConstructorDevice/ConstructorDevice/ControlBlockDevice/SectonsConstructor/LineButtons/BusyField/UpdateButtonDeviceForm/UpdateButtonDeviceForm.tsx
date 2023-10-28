@@ -12,6 +12,7 @@ import {
 } from "../../useLineButtons.inderface";
 import style from "./UpdateButtonDeviceForm.module.scss";
 import { useUpdateButtonDevice } from "./useUpdateButtonDevice";
+import { CreateButton } from "../../../../../../ConstructorDevice.interface";
 
 interface IUpdateButtonDeviceForm {
   createButtonDevice: TypeCreateButtonDevice;
@@ -38,11 +39,11 @@ const UpdateButtonDeviceForm: FC<IUpdateButtonDeviceForm> = ({
     handleSubmit,
     formState: { errors },
     control,
-  } = useForm<IButtonDevices>({ mode: "onChange" });
+  } = useForm<NonNullable<CreateButton>>({ mode: "onChange" });
 
   useUpdateButtonDevice(setValue, button);
 
-  const updateButton: SubmitHandler<IButtonDevices> = (data) => {
+  const updateButton: SubmitHandler<NonNullable<CreateButton>> = (data) => {
     createButtonDevice(data, idSection, lineNumber, index);
     setActiveModal(false);
   };
@@ -55,9 +56,7 @@ const UpdateButtonDeviceForm: FC<IUpdateButtonDeviceForm> = ({
       className={style.form}
       onSubmit={stopPropagate(handleSubmit(updateButton))}
     >
-      <Button type="button" onClick={deleteButton}>
-        Удалить кнопку
-      </Button>
+      <span className={style.title}>Изменение кнопки</span>
       <Field
         placeholder="Title"
         error={errors.title}
@@ -70,9 +69,9 @@ const UpdateButtonDeviceForm: FC<IUpdateButtonDeviceForm> = ({
         })}
       />
       <Field
-        placeholder="id"
-        error={errors.id}
-        {...register("id", { required: "Введите id кнопки!" })}
+        placeholder="Token кнопки"
+        error={errors.token}
+        {...register("token", { required: "Введите token кнопки!" })}
       />
       <Controller
         control={control}
@@ -89,11 +88,17 @@ const UpdateButtonDeviceForm: FC<IUpdateButtonDeviceForm> = ({
           />
         )}
       />
-
-      <Button type="button" onClick={() => setActiveModal(false)}>
-        Отмена
-      </Button>
-      <Button type="submit">Создать</Button>
+      <div className={style.buttons}>
+        <Button type="submit" icon="edit">
+          Сохранить
+        </Button>
+        <Button type="button" icon="delete" onClick={deleteButton}>
+          Удалить кнопку
+        </Button>
+        <Button type="button" onClick={() => setActiveModal(false)}>
+          Отмена
+        </Button>
+      </div>
     </form>
   );
 };

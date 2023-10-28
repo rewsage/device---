@@ -14,23 +14,22 @@ export const Confirm: FC<IConfirm> = ({
   fn,
   type,
   textPositiveBtn,
+  show,
   isClosesModal = false,
   ...props
 }) => {
-  const [visible, setVisible] = useState(true);
-
   const close = () => {
-    setVisible(false);
+    show(false);
   };
 
   const positive = () => {
-    setVisible(false);
+    show(false);
     fn();
   };
 
-  return visible ? (
+  return (
     <Portal>
-      <Modal close={close} isActive={visible} isClosesModal={isClosesModal}>
+      <Modal close={close} isActive={true} isClosesModal={isClosesModal}>
         <div className={style.alert} {...props}>
           <div className={style.header}>
             <div className={style.title}>{title}</div>
@@ -67,7 +66,5 @@ export const Confirm: FC<IConfirm> = ({
         </div>
       </Modal>
     </Portal>
-  ) : (
-    <></>
   );
 };

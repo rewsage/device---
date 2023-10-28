@@ -36,8 +36,9 @@ export const Tooltip: FC<ITooltip> = ({ text, e }) => {
 
   useEffect(() => {
     if (e && ref.current) {
-      let tx = e.pageX + 15; //left
-      let ty = e.pageY + 15; //top
+      console.log(e);
+      let tx = e.clientX + 15; //left
+      let ty = e.clientY + 15; //top
 
       ref.current.style.transform = `translate(${tx}px, ${ty}px)`;
     }

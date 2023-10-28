@@ -1,7 +1,8 @@
 import { IButtonDevices } from "../../../../../../../../shared/Types/device.type";
+import { CreateButton } from "../../../../ConstructorDevice.interface";
 
 export type TypeCreateButtonDevice = (
-  data: IButtonDevices,
+  data: NonNullable<CreateButton>,
   idSection: number,
   lineNumber: number,
   index: number

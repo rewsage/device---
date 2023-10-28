@@ -9,7 +9,8 @@ import { useDrop } from "react-dnd";
 import { TypeCreateButtonDevice } from "../useLineButtons.inderface";
 import CreateButtonDeviceForm from "./CreateButtonDeviceForm/CreateButtonDeviceForm";
 import style from "./EmptyField.module.scss";
-import { IconLucide } from "../../../../../../../../UI/Icon/Icon";
+import { Icon, IconLucide } from "../../../../../../../../UI/Icon/Icon";
+import { Portal } from "../../../../../../../../Providers/Portal/Portal";
 
 interface IEmptyFieldProps {
   lineNumber: number;
@@ -39,19 +40,21 @@ const EmptyField: FC<IEmptyFieldProps> = (props) => {
         onClick={() => setIsActiveModal(true)}
         style={isOVer ? { opacity: 0.5 } : {}}
       >
-        <IconLucide name="plus" />
+        <Icon name="plus" />
       </div>
-      <Modal
-        isActive={isActiveModal}
-        isClosesModal
-        close={() => setIsActiveModal(false)}
-      >
-        <CreateButtonDeviceForm
-          {...props}
-          setActiveModal={setIsActiveModal}
-          styleButton={styleButton}
-        />
-      </Modal>
+      <Portal>
+        <Modal
+          isActive={isActiveModal}
+          isClosesModal
+          close={() => setIsActiveModal(false)}
+        >
+          <CreateButtonDeviceForm
+            {...props}
+            setActiveModal={setIsActiveModal}
+            styleButton={styleButton}
+          />
+        </Modal>
+      </Portal>
     </>
   );
 };
