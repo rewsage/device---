@@ -49,6 +49,12 @@ export const deviceApi = createApi({
       }),
       invalidatesTags: ["Devices"],
     }),
+
+    getButtons: build.query<void, string>({
+      query: (host) => ({
+        url: `devices/getButtons/${host}`,
+      }),
+    }),
   }),
 });
 
@@ -58,4 +64,5 @@ export const {
   useGetDeviceQuery,
   useCreateDeviceMutation,
   useUpdateDeviceMutation,
+  useLazyGetButtonsQuery,
 } = deviceApi;

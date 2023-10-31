@@ -12,7 +12,7 @@ import { useConstructorDevice } from "./useConstructorDevice";
 import { Portal } from "../../../Providers/Portal/Portal";
 import { Modal } from "../../../UI/Modal/Modal";
 import { Loading } from "../../../UI/Loading/Loading";
-import { useGetAllDevicesQuery } from "../../../../services/deviceApi/device.api";
+import { useGetAllDevicesQuery, useLazyGetButtonsQuery } from "../../../../services/deviceApi/device.api";
 import { regIPv4 } from "../../../../shared/Regular/ip.validate";
 
 const Constructor: FC = () => {
@@ -116,9 +116,12 @@ const Constructor: FC = () => {
 
           <ButtonsConstructor />
 
-          <Button type="submit" icon="edit">
-            Сохранить
-          </Button>
+          <div className={style.buttons}>
+            <Button type="submit" icon="edit">
+              Сохранить
+            </Button>
+            <Button type="button">Загрузить кнопки</Button>
+          </div>
         </div>
         <div className={style.right}>
           <Controller

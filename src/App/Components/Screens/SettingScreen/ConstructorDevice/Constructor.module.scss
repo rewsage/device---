@@ -14,8 +14,11 @@
       width: 70%;
       min-width: 400px;
       box-sizing: border-box;
-      > button {
+      .buttons {
         margin-top: 20px;
+        display: flex;
+        align-items: center;
+        grid-gap: 15px;
       }
     }
     .right {
