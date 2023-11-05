@@ -13,6 +13,7 @@ import { ReactComponent as RadarIcon } from "../../../assets/Icons/radar.svg";
 import { ReactComponent as XIcon } from "../../../assets/Icons/x.svg";
 import { ReactComponent as MaximizeIcon } from "../../../assets/Icons/maximize.svg";
 import { ReactComponent as MinimizeIcon } from "../../../assets/Icons/minimize.svg";
+import { ReactComponent as WarningIcon } from "../../../assets/Icons/warning.svg";
 import { LucideProps } from "lucide-react";
 import dynamicIconImports from "lucide-react/dynamicIconImports";
 import { IconName, TypeIconsName } from "../../../shared/Types/icon.type";
@@ -34,6 +35,7 @@ export const icons = {
   x: XIcon,
   maximize: MaximizeIcon,
   minimize: MinimizeIcon,
+  warning: WarningIcon,
 };
 
 export const Icon = ({

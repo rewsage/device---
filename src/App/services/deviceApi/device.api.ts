@@ -2,6 +2,7 @@ import { createApi } from "@reduxjs/toolkit/dist/query/react";
 import { baseQuery } from "../axios";
 import { IInstrumentsButtons } from "../../shared/Types/device.type";
 import { IConstructor } from "../../Components/Screens/SettingScreen/ConstructorDevice/ConstructorDevice.interface";
+import { IToolbar } from "../../shared/Types/buttons.type";
 
 export const deviceApi = createApi({
   reducerPath: "deviceApi",
@@ -50,7 +51,7 @@ export const deviceApi = createApi({
       invalidatesTags: ["Devices"],
     }),
 
-    getButtons: build.query<void, string>({
+    getButtons: build.query<IToolbar, string>({
       query: (host) => ({
         url: `devices/getButtons/${host}`,
       }),

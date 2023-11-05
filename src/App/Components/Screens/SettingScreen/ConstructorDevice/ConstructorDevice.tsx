@@ -1,5 +1,5 @@
-import { FC, useEffect } from "react";
-import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { FC, useEffect, useState } from "react";
+import { Controller, useForm } from "react-hook-form";
 import { IConstructor } from "./ConstructorDevice.interface";
 import style from "./Constructor.module.scss";
 import TextField from "../../../UI/TextField/TextField";
@@ -12,8 +12,9 @@ import { useConstructorDevice } from "./useConstructorDevice";
 import { Portal } from "../../../Providers/Portal/Portal";
 import { Modal } from "../../../UI/Modal/Modal";
 import { Loading } from "../../../UI/Loading/Loading";
-import { useGetAllDevicesQuery, useLazyGetButtonsQuery } from "../../../../services/deviceApi/device.api";
+import { useGetAllDevicesQuery } from "../../../../services/deviceApi/device.api";
 import { regIPv4 } from "../../../../shared/Regular/ip.validate";
+import { Alert } from "../../../UI/Msg/Alert/Alert";
 
 const Constructor: FC = () => {
   const {
@@ -22,13 +23,14 @@ const Constructor: FC = () => {
     control,
     watch,
     setValue,
+    getValues,
     formState: { errors },
   } = useForm<IConstructor>({ mode: "onChange" });
 
-  const { isFetching, onSubmit, updateLoading } = useConstructorDevice(
-    setValue,
-    watch
-  );
+  const [isAlert, setAlert] = useState(false);
+
+  const { isFetching, onSubmit, updateLoading, getButtons } =
+    useConstructorDevice(setValue);
   const {
     data,
     isLoading: isLoadingType,
@@ -45,6 +47,15 @@ const Constructor: FC = () => {
   });
 
   const typeSections = watch("type");
+
+  const toggleGetButtons = () => {
+    const currentHost = getValues("host");
+    if (errors.host) {
+      setAlert(true);
+      return;
+    }
+    getButtons(currentHost);
+  };
 
   useEffect(() => {
     if (typeof typeSections === "string") return setValue("sections", []);
@@ -64,6 +75,13 @@ const Constructor: FC = () => {
             </Modal>
           </Portal>
         ))}
+      {isAlert && (
+        <Alert
+          show={setAlert}
+          text="Хост прибора не верно введен, или не введен вообще"
+          title="Ошибка"
+        />
+      )}
       <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
         <div className={style.left}>
           <TextField
@@ -120,7 +138,9 @@ const Constructor: FC = () => {
             <Button type="submit" icon="edit">
               Сохранить
             </Button>
-            <Button type="button">Загрузить кнопки</Button>
+            <Button type="button" onClick={toggleGetButtons}>
+              Загрузить кнопки
+            </Button>
           </div>
         </div>
         <div className={style.right}>

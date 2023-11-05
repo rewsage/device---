@@ -1,21 +1,96 @@
-import { SubmitHandler, UseFormSetValue, UseFormWatch } from "react-hook-form";
+import {
+  SubmitHandler,
+  UseFormSetValue,
+  UseFormGetValues,
+} from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import {
   useCreateDeviceMutation,
   useGetDeviceQuery,
+  useLazyGetButtonsQuery,
   useUpdateDeviceMutation,
 } from "../../../../services/deviceApi/device.api";
 import { useEffect, useState } from "react";
 import { useLatest } from "../../../../hooks/useLatest";
-import { IConstructor } from "./ConstructorDevice.interface";
+import { CreateButton, IConstructor } from "./ConstructorDevice.interface";
 import { useLocation } from "react-router-dom";
+import { IConstructorDevice } from "./ConstructorDevice/constructorDevice.interface";
+import { TypeStyleButtonDevice } from "../../../../shared/Types/device.type";
 
 export const useConstructorDevice = (
-  setValue: UseFormSetValue<IConstructor>,
-  watch: UseFormWatch<IConstructor>
+  setValue: UseFormSetValue<IConstructor>
 ) => {
   const { id } = useParams();
   const navigate = useNavigate();
+
+  const getStyle = (bg: string): TypeStyleButtonDevice => {
+    let style: TypeStyleButtonDevice = "default";
+    switch (bg) {
+      case "#5CCA9D":
+        style = "green";
+        break;
+
+      case "#545465":
+        style = "default";
+        break;
+      case "#EBEBF4":
+        style = "gray";
+        break;
+      default:
+        break;
+    }
+
+    return style;
+  };
+
+  const [getButtons, { dataButtons, isFetchingButtons, isSuccessButtons }] =
+    useLazyGetButtonsQuery({
+      selectFromResult: ({ data, isFetching, isSuccess }) => {
+        const resData: { buttons: CreateButton[][] }[] = [];
+        if (!data) {
+          return {
+            dataButtons: [],
+            isFetchingButtons: isFetching,
+            isSuccessButtons: isSuccess,
+          };
+        }
+
+        for (let i = 0; i < data.ToolbarRegions.length; i++) {
+          const section = data.ToolbarRegions[i];
+          const countColumn = Number(section.ToolbarRegionColumns);
+          const countRow = Number(section.ToolbarRegionRows);
+
+          const array: CreateButton[][] = new Array(countRow).fill([
+            ...new Array(countColumn).fill(null),
+          ]);
+
+          for (let j = 0; j < section.Buttons.length; j++) {
+            const [x, y] =
+              section.Buttons[j].ToolbarButtonRegionCell.split(",");
+            const numberX = Number(x);
+            const numberY = Number(y);
+
+            if (Array.isArray(array[numberX])) {
+              const row = [...array[numberX]];
+              row.splice(numberY, 1, {
+                title: section.Buttons[j].ToolbarButtonLabel,
+                token: section.Buttons[j].ToolbarButtonId,
+                style: getStyle(section.Buttons[j].ToolbarButtonBGColor),
+              });
+              array.splice(numberX, 1, [...row]);
+            }
+          }
+
+          resData.push({ buttons: array });
+        }
+
+        return {
+          dataButtons: resData,
+          isFetchingButtons: isFetching,
+          isSuccessButtons: isSuccess,
+        };
+      },
+    });
 
   const type = useLatest<"create" | "update">(
     !id || id === "new" ? "create" : "update"
@@ -50,6 +125,12 @@ export const useConstructorDevice = (
     }
   }, [isSuccess, data]);
 
+  useEffect(() => {
+    if (dataButtons) {
+      setValue("sections", dataButtons);
+    }
+  }, [isSuccessButtons]);
+
   const [updateDevice] = useUpdateDeviceMutation();
   const [createDevice] = useCreateDeviceMutation();
 
@@ -63,7 +144,6 @@ export const useConstructorDevice = (
         response = await updateDevice({ data, id: Number(id) });
       }
       setUpdateIsLoading(false);
-      console.log(response);
       //   clear();
       navigate("/setting/devices", { replace: true });
     } catch (error) {
@@ -72,5 +152,10 @@ export const useConstructorDevice = (
     }
   };
 
-  return { onSubmit, isFetching, updateLoading };
+  return {
+    onSubmit,
+    getButtons,
+    isFetching,
+    updateLoading: updateLoading || isFetchingButtons,
+  };
 };
