@@ -29,7 +29,7 @@ const SectionsConstructor: FC<ISectionConstructorProps> = ({
       <button type="button" onClick={() => removeSections(section.idSection)}>
         <Icon name="delete" />
       </button>
-      <div className={style.fields}>
+      <table className={style.fields}>
         {section.buttons.map((item, index) => (
           <LineButtons
             buttons={item}
@@ -39,7 +39,7 @@ const SectionsConstructor: FC<ISectionConstructorProps> = ({
             field={field}
           />
         ))}
-      </div>
+      </table>
       <div className={style.buttons}>
         <button
           type="button"

@@ -26,6 +26,7 @@ const ControlBlockDevice: FC<IControlBlockDeviceProps> = ({
   //     // setEvent(e);
   //     setShowTooltip((prev) => !prev);
   //   };
+  console.log(buttons)
   return (
     <div className={style.container}>
       <div>

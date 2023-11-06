@@ -7,10 +7,10 @@ export const SectionsButtons: FC<{ section: ISectionButtons }> = ({
   section,
 }) => {
   return (
-    <div className={style.section}>
+    <table className={style.section}>
       {section.buttons.map((line, index) => (
         <LineButtons buttons={line} key={index} />
       ))}
-    </div>
+    </table>
   );
 };

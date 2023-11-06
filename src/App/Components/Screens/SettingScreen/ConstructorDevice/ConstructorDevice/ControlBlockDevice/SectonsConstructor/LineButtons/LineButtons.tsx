@@ -21,7 +21,7 @@ const LineButtons: FC<ILineButtonsProps> = ({
 }) => {
   const { createButtonDevice, deleteButtonDevice } = useLineButtons(field);
   return (
-    <div className={style.line}>
+    <tr className={style.line}>
       {buttons.map((button, index) =>
         button ? (
           <BusyField
@@ -43,7 +43,7 @@ const LineButtons: FC<ILineButtonsProps> = ({
           />
         )
       )}
-    </div>
+    </tr>
   );
 };
 

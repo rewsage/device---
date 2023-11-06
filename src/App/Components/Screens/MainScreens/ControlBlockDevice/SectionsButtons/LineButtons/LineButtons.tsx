@@ -3,24 +3,27 @@ import { TypeButtons } from "../../../../../../shared/Types/device.type";
 import style from "./LineButtons.module.scss";
 import { ButtonDevice } from "../../../../../UI/Device/ButtonDevice/ButtonDevice";
 import { useLazyHandleButtonQuery } from "../../../../../../services/deviceApi/buttons.api";
+import parse from "html-react-parser";
 
 export const LineButtons: FC<{ buttons: TypeButtons[] }> = ({ buttons }) => {
   const [trigger] = useLazyHandleButtonQuery();
   return (
-    <div className={style.container}>
+    <tr className={style.container}>
       {buttons.map((button, index) =>
         button ? (
-          <ButtonDevice
-            mode={button.style}
-            key={button.id}
-            onClick={() => trigger(button.id)}
-          >
-            {button.title}
-          </ButtonDevice>
+          <td>
+            <ButtonDevice
+              mode={button.style}
+              key={button.id}
+              onClick={() => trigger(button.id)}
+            >
+              {parse(button.title)}
+            </ButtonDevice>
+          </td>
         ) : (
-          <div className={style.empty} key={index}></div>
+          <td className={style.empty} key={index}></td>
         )
       )}
-    </div>
+    </tr>
   );
 };

@@ -34,14 +34,14 @@ const EmptyField: FC<IEmptyFieldProps> = (props) => {
   }));
   return (
     <>
-      <div
+      <td
         ref={drop}
         className={style.empty_field}
         onClick={() => setIsActiveModal(true)}
         style={isOVer ? { opacity: 0.5 } : {}}
       >
-        <Icon name="plus" />
-      </div>
+        <Icon name="plus" className={style.icon} />
+      </td>
       <Portal>
         <Modal
           isActive={isActiveModal}

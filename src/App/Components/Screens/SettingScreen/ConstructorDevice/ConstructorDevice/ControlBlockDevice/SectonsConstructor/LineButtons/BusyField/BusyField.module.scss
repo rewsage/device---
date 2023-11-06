@@ -2,13 +2,15 @@
 @import "../../../../../../../../../assets/mixins.module.scss";
 
 .busy_field {
-  width: 100%;
+  //   width: 100%;
   cursor: pointer;
+  min-width: 60px;
   -webkit-user-select: none; /* Safari */
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
   .button {
-    width: 100%;
+    // width: 100%;
+    text-align: center;
     height: 2.5rem;
     text-transform: uppercase;
     background-color: white;

@@ -1,13 +1,25 @@
 @import "../../../../../assets/const.module.scss";
 .container {
   display: block;
-  width: 350px;
+  width: 450px;
   height: 100%;
   border: $color_navy_blue 2px solid;
   border-radius: 10px;
-  padding: 5px;
+  padding: 48px;
   box-sizing: border-box;
   overflow: auto;
-//   margin: 100px 0 100px 0;
-
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;
+    background-color: $color_navy_blue;
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    // background: linear-gradient(180deg, $color_lime, $color_green);
+    background-color: $color_lime;
+  }
+  //   margin: 100px 0 100px 0;
 }

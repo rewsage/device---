@@ -15,7 +15,11 @@ import { useLatest } from "../../../../hooks/useLatest";
 import { CreateButton, IConstructor } from "./ConstructorDevice.interface";
 import { useLocation } from "react-router-dom";
 import { IConstructorDevice } from "./ConstructorDevice/constructorDevice.interface";
-import { TypeStyleButtonDevice } from "../../../../shared/Types/device.type";
+import {
+  ISectionButtons,
+  TypeButtons,
+  TypeStyleButtonDevice,
+} from "../../../../shared/Types/device.type";
 
 export const useConstructorDevice = (
   setValue: UseFormSetValue<IConstructor>
@@ -46,7 +50,7 @@ export const useConstructorDevice = (
   const [getButtons, { dataButtons, isFetchingButtons, isSuccessButtons }] =
     useLazyGetButtonsQuery({
       selectFromResult: ({ data, isFetching, isSuccess }) => {
-        const resData: { buttons: CreateButton[][] }[] = [];
+        const resData: ISectionButtons[] = [];
         if (!data) {
           return {
             dataButtons: [],
@@ -60,7 +64,7 @@ export const useConstructorDevice = (
           const countColumn = Number(section.ToolbarRegionColumns);
           const countRow = Number(section.ToolbarRegionRows);
 
-          const array: CreateButton[][] = new Array(countRow).fill([
+          const array: TypeButtons[][] = new Array(countRow).fill([
             ...new Array(countColumn).fill(null),
           ]);
 
@@ -76,12 +80,13 @@ export const useConstructorDevice = (
                 title: section.Buttons[j].ToolbarButtonLabel,
                 token: section.Buttons[j].ToolbarButtonId,
                 style: getStyle(section.Buttons[j].ToolbarButtonBGColor),
+                id: Math.random(),
               });
               array.splice(numberX, 1, [...row]);
             }
           }
 
-          resData.push({ buttons: array });
+          resData.push({ buttons: array, idSection: Math.random() });
         }
 
         return {
@@ -109,6 +114,7 @@ export const useConstructorDevice = (
 
   useEffect(() => {
     if (data) {
+      console.log(data);
       setValue("name", data.name);
       setValue("host", data.host);
       setValue("port", data.port);

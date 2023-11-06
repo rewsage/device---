@@ -9,6 +9,7 @@ import {
   TypeCreateButtonDevice,
 } from "../useLineButtons.inderface";
 import { Portal } from "../../../../../../../../Providers/Portal/Portal";
+import parse from "html-react-parser";
 
 interface IBusyFieldProps {
   button: IButtonDevices;
@@ -22,14 +23,14 @@ interface IBusyFieldProps {
 const BusyField: FC<IBusyFieldProps> = (props) => {
   const [isActiveModal, setIsActiveModal] = useState(false);
   return (
-    <div className={style.busy_field} onClick={() => setIsActiveModal(true)}>
+    <td className={style.busy_field} onClick={() => setIsActiveModal(true)}>
       <div
         className={cn(style.button, {
           [style.button_green]: props.button.style === "green",
           [style.button_grey]: props.button.style === "gray",
         })}
       >
-        {props.button.title}
+        {parse(props.button.title)}
       </div>
       <Portal>
         <Modal
@@ -43,7 +44,7 @@ const BusyField: FC<IBusyFieldProps> = (props) => {
           />
         </Modal>
       </Portal>
-    </div>
+    </td>
   );
 };
 

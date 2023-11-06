@@ -50,7 +50,7 @@ const Constructor: FC = () => {
 
   const toggleGetButtons = () => {
     const currentHost = getValues("host");
-    if (errors.host) {
+    if (errors.host || !currentHost) {
       setAlert(true);
       return;
     }
