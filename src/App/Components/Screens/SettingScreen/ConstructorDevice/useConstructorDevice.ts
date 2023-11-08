@@ -59,34 +59,43 @@ export const useConstructorDevice = (
           };
         }
 
-        for (let i = 0; i < data.ToolbarRegions.length; i++) {
-          const section = data.ToolbarRegions[i];
-          const countColumn = Number(section.ToolbarRegionColumns);
-          const countRow = Number(section.ToolbarRegionRows);
+        try {
+          for (let i = 0; i < data.ToolbarRegions.length; i++) {
+            const section = data.ToolbarRegions[i];
+            const countColumn = Number(section.ToolbarRegionColumns);
+            const countRow = Number(section.ToolbarRegionRows);
 
-          const array: TypeButtons[][] = new Array(countRow).fill([
-            ...new Array(countColumn).fill(null),
-          ]);
+            const array: TypeButtons[][] = new Array(countRow).fill([
+              ...new Array(countColumn).fill(null),
+            ]);
 
-          for (let j = 0; j < section.Buttons.length; j++) {
-            const [x, y] =
-              section.Buttons[j].ToolbarButtonRegionCell.split(",");
-            const numberX = Number(x);
-            const numberY = Number(y);
+            for (let j = 0; j < section.Buttons.length; j++) {
+              const [x, y] =
+                section.Buttons[j].ToolbarButtonRegionCell.split(",");
+              const numberX = Number(x);
+              const numberY = Number(y);
 
-            if (Array.isArray(array[numberX])) {
-              const row = [...array[numberX]];
-              row.splice(numberY, 1, {
-                title: section.Buttons[j].ToolbarButtonLabel,
-                token: section.Buttons[j].ToolbarButtonId,
-                style: getStyle(section.Buttons[j].ToolbarButtonBGColor),
-                id: Math.random(),
-              });
-              array.splice(numberX, 1, [...row]);
+              if (Array.isArray(array[numberX])) {
+                const row = [...array[numberX]];
+                row.splice(numberY, 1, {
+                  title: section.Buttons[j].ToolbarButtonLabel,
+                  token: section.Buttons[j].ToolbarButtonId,
+                  style: getStyle(section.Buttons[j].ToolbarButtonBGColor),
+                  id: Math.random(),
+                });
+                array.splice(numberX, 1, [...row]);
+              }
             }
-          }
 
-          resData.push({ buttons: array, idSection: Math.random() });
+            resData.push({ buttons: array, idSection: Math.random() });
+          }
+        } catch (error) {
+          console.error(error);
+          return {
+            dataButtons: [],
+            isFetchingButtons: isFetching,
+            isSuccessButtons: isSuccess,
+          };
         }
 
         return {
