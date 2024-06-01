@@ -1,6 +1,5 @@
-import { RefObject } from "react";
 import { IInstrumentsButtons } from "../../shared/Types/device.type";
-import RFB from "../../shared/noVNC/core/rfb";
+import RFB from "@novnc/novnc/core/rfb";
 
 export type DeviceRedux = IInstrumentsButtons & {
   loading: boolean;

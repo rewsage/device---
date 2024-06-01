@@ -1,8 +1,7 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { IInstrumentsButtons } from "../../../../../shared/Types/device.type";
-import RFB from "../../../../../shared/noVNC/core/rfb";
+import RFB from "@novnc/novnc/core/rfb";
 import { getPasswordVNC, getUrlVnc } from "../../../../../utils/noVNC.utils";
-import { useLatest } from "../../../../../hooks/useLatest";
 
 export const useNoVns = (device: IInstrumentsButtons) => {
   enum Events {
@@ -13,7 +12,7 @@ export const useNoVns = (device: IInstrumentsButtons) => {
   const [loading, setLoading] = useState(false);
   const [connected, setConnected] = useState(false);
 
-  const screen = useRef<HTMLDivElement | null>(null);
+  const screenRef = useRef<HTMLDivElement | null>(null);
   const rfb = useRef<RFB | null>(null);
   const device_url = useRef<string | null>(null);
 
@@ -29,7 +28,7 @@ export const useNoVns = (device: IInstrumentsButtons) => {
     console.log("CONNECTED");
     setLoading(false);
     setConnected(true);
-    console.log(screen);
+    console.log(screenRef);
   };
 
   const onDisconnect = () => {
@@ -41,6 +40,7 @@ export const useNoVns = (device: IInstrumentsButtons) => {
   const onCredentialsrequired = () => {
     const session = getRfb();
     if (session) {
+      // @ts-ignore: RFB also expects username and target
       session.sendCredentials({ password: getPasswordVNC() });
     }
   };
@@ -54,7 +54,10 @@ export const useNoVns = (device: IInstrumentsButtons) => {
   const connect = useCallback(() => {
     // if (!device_url) { throw 'URL is required' }
     // const res_url = `ws://${constants.server_ip}:6080/websockify?token=SA1`
-    const _rfb = new RFB(screen.current, getUrlVnc(device.id));
+    const screen = screenRef.current;
+    if (!screen) return;
+
+    const _rfb = new RFB(screen, getUrlVnc(device.id));
     _rfb.clipViewport = true;
     _rfb.scaleViewport = true;
     _rfb.qualityLevel = 9;
@@ -95,5 +98,5 @@ export const useNoVns = (device: IInstrumentsButtons) => {
     setConnected(false);
   }, []);
 
-  return { screen, disconnect, connect, loading, connected };
+  return { screen: screenRef, disconnect, connect, loading, connected };
 };
