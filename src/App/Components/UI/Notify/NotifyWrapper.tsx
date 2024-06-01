@@ -1,29 +1,24 @@
-import { FC, PropsWithChildren, useEffect, useState } from "react";
+import { FC, PropsWithChildren } from "react";
 import style from "./Notify.module.scss";
 import { Notify } from "./Notify";
 import { INotify } from "./Notify.interface";
 
-export const NotifyWrapper: FC<PropsWithChildren> = ({ children }) => {
-  const [notifications, setNotifications] = useState<INotify[]>([]);
-  const [id, setId] = useState(0);
+export interface INotifyWrapperProps {
+  notifyList: INotify[];
+  removeNotify: (id: string) => void;
+}
 
-  const show = (notify: Omit<INotify, "idNotify">) => {
-    setNotifications((prev) => [...prev, { ...notify, idNotify: id }]);
-    setId(id + 1);
-  };
-
-  const hide = (id: number) => {
-    setNotifications((oldArray) =>
-      oldArray.filter((notify) => notify.idNotify !== id)
-    );
-  };
-
+export const NotifyWrapper: FC<PropsWithChildren<INotifyWrapperProps>> = ({
+  notifyList,
+  removeNotify,
+  children,
+}) => {
   return (
     <>
       {children}
       <div className={style.wrapper}>
-        {notifications.map((notify) => (
-          <Notify {...notify} close={hide} key={notify.idNotify} />
+        {notifyList.map((notify) => (
+          <Notify {...notify} close={removeNotify} key={notify.id} />
         ))}
       </div>
     </>

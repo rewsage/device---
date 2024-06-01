@@ -2,6 +2,7 @@ import { deviceApi } from "./../services/deviceApi/device.api";
 import { configureStore } from "@reduxjs/toolkit";
 import { deviceReducer } from "./device/device.slice";
 import { networkApi } from "../services/networkApi/networkApi";
+import { errorLoggerMiddleware } from "./middlewares/errorLoggerMiddleware";
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     getDefaultMiddleware().concat([
       deviceApi.middleware,
       networkApi.middleware,
+      errorLoggerMiddleware,
     ]),
 });
 

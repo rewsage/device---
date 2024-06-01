@@ -1,9 +1,9 @@
 import { HTMLAttributes } from "react";
 
 export interface INotifyProps {
-  title: string;
-  text: string;
-  idNotify: number;
+  id: string;
+  title?: string;
+  text?: string;
   autoHide?: boolean;
   isError?: boolean;
   defaultHideTimeout?: number;

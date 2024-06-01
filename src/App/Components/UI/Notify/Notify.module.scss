@@ -8,7 +8,11 @@
   z-index: 1000;
   width: 400px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
   .notify {
+    position: relative;
     border-radius: 5px;
     display: block;
     background-color: $color_navy_blue;

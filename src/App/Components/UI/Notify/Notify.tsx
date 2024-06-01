@@ -4,12 +4,12 @@ import { INotify } from "./Notify.interface";
 import cn from "classnames";
 import { CloseBtn } from "../Msg/CloseBtn/CloseBtn";
 
-type propsNotify = INotify & { close: (id: number) => void };
+type propsNotify = INotify & { close: (id: string) => void };
 
 export const Notify: FC<propsNotify> = ({
+  id,
   text,
   title,
-  idNotify,
   close,
   autoHide = true,
   isError = false,
@@ -20,10 +20,7 @@ export const Notify: FC<propsNotify> = ({
   let closeTimeout: ReturnType<typeof setTimeout> | null = null;
   useEffect(() => {
     if (autoHide)
-      closeTimeout = setTimeout(
-        () => close(idNotify),
-        defaultHideTimeout * 1000
-      );
+      closeTimeout = setTimeout(() => close(id), defaultHideTimeout * 1000);
   }, []);
 
   const mouseOver = () => {
@@ -37,7 +34,7 @@ export const Notify: FC<propsNotify> = ({
     const timeLeft = closeTime - Date.now();
     if (autoHide)
       closeTimeout = setTimeout(
-        () => close(idNotify),
+        () => close(id),
         timeLeft > 2000 ? timeLeft : 2000
       );
   };
@@ -51,7 +48,7 @@ export const Notify: FC<propsNotify> = ({
     >
       <div className={style.title}>
         <div className={style.titleText}>{title}</div>
-        <CloseBtn close={() => close(idNotify)} />
+        <CloseBtn close={() => close(id)} />
       </div>
       <div className={style.text}>{text}</div>
     </div>

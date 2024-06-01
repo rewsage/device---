@@ -1,14 +1,12 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import style from "./TableDevice.module.scss";
 import {
   useGetAllDevicesQuery,
   useRemoveDeviceMutation,
 } from "../../../../services/deviceApi/device.api";
 import { Grid } from "../../../UI/Grid/Grid";
-import { columnsDevice } from "./TableDevice.columns";
 import { Icon } from "../../../UI/Icon/Icon";
 import { Link } from "react-router-dom";
-import { NotifyWrapper } from "../../../UI/Notify/NotifyWrapper";
 import { Button } from "../../../UI/Button/Button";
 import { Confirm } from "../../../UI/Msg/Confirm/Confirm";
 
